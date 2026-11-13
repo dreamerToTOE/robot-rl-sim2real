@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.venv*/
+*.egg-info/
+dist/
+build/
+
+# Robot vendor packages: keep private / licensing unknown
+model_assets/local/
+vendor/
+third_party/private/
+*.key
+*.pem
+*.p12
+.env
+.env.*
+!.env.example
+
+# Models, checkpoints, simulator data
+runs/
+logs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.usd
+*.usda
+*.usdc
+
+# Raw data and hardware recordings (publish only reviewed summaries)
+data/raw/
+data/private/
+results/raw/
+videos/raw/
+
+# Local configs / session-specific content
+config.local.yaml
+*~
+.DS_Store
