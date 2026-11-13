@@ -1,0 +1,477 @@
+{
+  "status": "PASS",
+  "parameter_class": "SIM_ONLY",
+  "baseline_commit": "1704d1b8b3b68f20128061962c96212e466f929c",
+  "runtime": {
+    "python": "3.10.12",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.4",
+    "isaac_sim": "4.5.0",
+    "isaac_lab_commit": "90b79bb2d44feb8d833f260f2bf37da3487180ba",
+    "isaac_lab_extension": "0.41.3",
+    "seed": 20261113,
+    "num_envs": 2,
+    "physics_dt_s": 0.004166666666666667,
+    "control_dt_s": 0.016666666666666666,
+    "maximum_episode_steps": 630,
+    "finite_horizon": true,
+    "physx_joint_order": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6"
+    ],
+    "canonical_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "urdf_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+    "usd_layer_sha256": {
+      "configuration/robot_base.usd": "2db129694bf89559f720dfa54ebbed9caab11ba24bf6081a18eca8f186a14b1e",
+      "configuration/robot_physics.usd": "07b74119a8548873f4f285c2817ce60fc70802cef31641f9e9bb3dd1986624d8",
+      "configuration/robot_sensor.usd": "eb488734e010845ad4b630e80707eaa3fb679f1c9e20803194e8402a144c522b",
+      "robot.usd": "73d1767873486f9ff31beb24332f0d10f5bf2e641d6fe83359d4eff1daf98092"
+    },
+    "source_sha256": {
+      "scripts/test_circle_rl_env.py": "454a75a01ff2fe3087dda26a82426bf1689c85ba7ea06e0e6b2f69d43b605882",
+      "src/robot_rl_sim2real/isaac_circle_env.py": "0243ff9d7db0fdd752e673f720262adc53a4dc38154a6c1609ca0dd18eb432ce",
+      "src/robot_rl_sim2real/circle_rl.py": "3bd3dd74c021bd41f2d124536cae0da5cd8862a56760c080a638da9eaa047360",
+      "configs/b2_s0_circle_sim_only.json": "eb52c45805806b228e733d9d6ee190805709e591ee6161db85eef627c49fd994",
+      "scripts/run_circle_trajectory.py": "c6204010d878ced46add9fd1cc86853f3307968264d2eb9ceb138ccd5aba0480",
+      "scripts/check_model_collisions.py": "e6acebdfaf372c9f2886f7ee3506fb5a03e596bc724f7cc412a5fab6bca2ba37"
+    },
+    "diagnostic_trajectory_sha256": "d7936252dfb46fc4149d81b9ffbcdd60ac35dcac31c6ce2897b30a979c5ec163"
+  },
+  "controller_configs_identical_except_mode": true,
+  "pd_full": {
+    "status": "PASS",
+    "parameter_class": "SIM_ONLY",
+    "suite": "full",
+    "controller_mode": "pd",
+    "checks": {
+      "observation": {
+        "status": "PASS",
+        "shape": [
+          2,
+          31
+        ],
+        "target_error_observed": true,
+        "privileged_critic": false
+      },
+      "action_boundary": {
+        "status": "PASS",
+        "first_increment_rad": 0.00075,
+        "maximum_normalized_action": 1.0
+      },
+      "reset": {
+        "status": "PASS",
+        "sample_count": 50,
+        "minimum_jacobian_sigma": 0.05424395455895386,
+        "maximum_initial_position_error_m": 0.0005725111315972619
+      },
+      "episode_time_and_diagnostic_ik": {
+        "status": "PASS",
+        "control_steps": 630,
+        "timeout_observed": true,
+        "duration_s": 10.5,
+        "actual_duration_s": 10.500000547617674,
+        "maximum_fk_position_error_m": 3.1959542895370136e-07,
+        "maximum_orientation_error_rad": 0.014733821115734945,
+        "circle_rmse_m": 0.003406358914435888,
+        "return_by_env": [
+          0.546932087278813,
+          0.5468382071151326
+        ],
+        "reference_segments": [
+          "circle",
+          "hold",
+          "startup",
+          "stop"
+        ]
+      },
+      "zero_action": {
+        "status": "PASS",
+        "tested_control_steps": 630,
+        "first_episodes": [
+          {
+            "steps": 630,
+            "return": 0.08363814649379983,
+            "position_rmse_m": 0.014288673659911688,
+            "reasons": [],
+            "truncated": true
+          },
+          {
+            "steps": 630,
+            "return": 0.10505476850758559,
+            "position_rmse_m": 0.01401504716128661,
+            "reasons": [],
+            "truncated": true
+          }
+        ],
+        "termination_count": 0
+      },
+      "random_action": {
+        "status": "PASS",
+        "tested_control_steps": 630,
+        "first_episodes": [
+          {
+            "steps": 56,
+            "return": 0.007369638411652146,
+            "position_rmse_m": 0.007881047443466713,
+            "reasons": [
+              "orientation"
+            ],
+            "truncated": false
+          },
+          {
+            "steps": 102,
+            "return": 0.011194234213710876,
+            "position_rmse_m": 0.008645571725017369,
+            "reasons": [
+              "orientation"
+            ],
+            "truncated": false
+          }
+        ],
+        "termination_count": 14
+      },
+      "stationary_and_failure_reward_comparison": {
+        "status": "PASS",
+        "criterion": "diagnostic IK return exceeds both zero-action and first random episode returns"
+      },
+      "seed_repeatability": {
+        "status": "PASS",
+        "steps": 32,
+        "maximum_absolute_difference": 0.0,
+        "different_seed_changes_reset": true
+      },
+      "selective_reset_independence": {
+        "status": "PASS",
+        "other_env_state_target_action_time_rng_unchanged": true
+      },
+      "collision_termination": {
+        "status": "PASS",
+        "reasons": [
+          "local_joint_bound",
+          "tracking_workspace",
+          "orientation",
+          "geometry_collision",
+          "physx_contact"
+        ],
+        "physx_events": [
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link4",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.029168389271945,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link5",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.029168389271945,
+            "contact_count": 3
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link6",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.029168389271945,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link4",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.03333505615592,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link5",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.03333505615592,
+            "contact_count": 3
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link6",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.03333505615592,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link4",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.037501723039895,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link5",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.037501723039895,
+            "contact_count": 3
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link6",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.037501723039895,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link4",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.04166838992387,
+            "contact_count": 4
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link5",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.04166838992387,
+            "contact_count": 3
+          },
+          {
+            "actors": [
+              "/World/envs/env_0/Robot/link6",
+              "/World/envs/env_0/Robot/base_link"
+            ],
+            "env_ids": [
+              0
+            ],
+            "simulation_time_s": 33.04166838992387,
+            "contact_count": 4
+          }
+        ],
+        "other_environment_unaffected": true
+      },
+      "joint_limit_termination": {
+        "status": "PASS",
+        "reasons": [
+          "joint_limit",
+          "local_joint_bound",
+          "tracking_workspace",
+          "orientation"
+        ]
+      },
+      "invalid_action_termination": {
+        "status": "PASS",
+        "finite_returned_observation": true
+      },
+      "nonfinite_feedback_termination": {
+        "status": "PASS",
+        "method": "corrupt state-reader output; no NaN written to PhysX",
+        "finite_returned_observation": true
+      },
+      "failure_return_accounting": {
+        "status": "PASS",
+        "best_possible_one_step_return": 0.001634920634920635,
+        "minimum_possible_step_return": 7.936507936507979e-06,
+        "perfect_full_horizon_return": 1.03,
+        "note": "termination handled separately; continuing yields positive per-step reward"
+      },
+      "observation_continuity": {
+        "status": "PASS",
+        "compared_transitions": 3866,
+        "maximum_abs_step_change": 0.3185068964958191,
+        "scope": "consecutive non-reset observations"
+      }
+    },
+    "failures": [],
+    "logged_transitions": 3970,
+    "training_started": false,
+    "hardware_connected": false
+  },
+  "pd_gravity_quick": {
+    "status": "PASS",
+    "parameter_class": "SIM_ONLY",
+    "suite": "quick",
+    "controller_mode": "pd_gravity",
+    "checks": {
+      "observation": {
+        "status": "PASS",
+        "shape": [
+          2,
+          31
+        ],
+        "target_error_observed": true,
+        "privileged_critic": false
+      },
+      "action_boundary": {
+        "status": "PASS",
+        "first_increment_rad": 0.00075,
+        "maximum_normalized_action": 1.0
+      },
+      "reset": {
+        "status": "PASS",
+        "sample_count": 10,
+        "minimum_jacobian_sigma": 0.05424395455895386,
+        "maximum_initial_position_error_m": 0.000481408880361377
+      },
+      "episode_time_and_diagnostic_ik": {
+        "status": "PASS",
+        "control_steps": 32,
+        "timeout_observed": false,
+        "duration_s": 0.5333333333333333,
+        "actual_duration_s": 0.5333333611488342,
+        "maximum_fk_position_error_m": 2.833714488857355e-07,
+        "maximum_orientation_error_rad": 0.0009092889953393394,
+        "circle_rmse_m": null,
+        "return_by_env": [
+          0.05231156086357065,
+          0.052302605500100255
+        ],
+        "reference_segments": [
+          "startup"
+        ]
+      },
+      "observation_continuity": {
+        "status": "PASS",
+        "compared_transitions": 62,
+        "maximum_abs_step_change": 0.23048195242881775,
+        "scope": "consecutive non-reset observations"
+      }
+    },
+    "failures": [],
+    "logged_transitions": 74,
+    "training_started": false,
+    "hardware_connected": false
+  },
+  "normal_trajectory_statistics": {
+    "diagnostic_ik": {
+      "samples": 1260,
+      "max_joint_velocity_rad_s": 0.20192912220954895,
+      "max_command_effort_nm": 2.115744113922119,
+      "target_clipped_count": 0,
+      "minimum_step_reward": 0.00026765620731748703,
+      "maximum_step_reward": 0.001608232874179838,
+      "termination_reasons": {}
+    },
+    "zero_action": {
+      "samples": 1260,
+      "max_joint_velocity_rad_s": 0.18230746686458588,
+      "max_command_effort_nm": 2.0536582469940186,
+      "target_clipped_count": 0,
+      "minimum_step_reward": 4.761904761904766e-05,
+      "maximum_step_reward": 0.00161063167799461,
+      "termination_reasons": {}
+    },
+    "random_action": {
+      "samples": 1260,
+      "max_joint_velocity_rad_s": 0.23710380494594574,
+      "max_command_effort_nm": 2.182401180267334,
+      "target_clipped_count": 0,
+      "minimum_step_reward": 4.4505319225438924e-05,
+      "maximum_step_reward": 0.0016185065456164028,
+      "termination_reasons": {
+        "orientation": 14
+      }
+    }
+  },
+  "cpu_tests": {
+    "normal": 39,
+    "normal_passed": 39,
+    "stdlib_only": 39,
+    "stdlib_only_skipped_optional_dependency": 20
+  },
+  "factory_environment_fingerprint": {
+    "checked_files": 110,
+    "changed_files": 0
+  },
+  "accepted_output_directories": {
+    "pd": "runs/b2_s0/full_pd_005",
+    "pd_gravity": "runs/b2_s0/quick_gravity_001"
+  },
+  "accepted_log_files": {
+    "pd": "runs/b2_s0_full_pd_005.log",
+    "pd_gravity": "runs/b2_s0_quick_gravity_001.log"
+  },
+  "log_review": {
+    "shell_exit_codes": {
+      "pd": 0,
+      "pd_gravity": 0
+    },
+    "result_marker": true,
+    "timeline_stopped_marker": true,
+    "error_line_count": 0
+  },
+  "superseded_attempts": {
+    "quick_001": "clone cooked vertices differed by ~1.1e-16, exact equality rejected; tolerance corrected",
+    "full_pd_001": "24D measured-q target: zero-action orientation termination after eight steps; superseded",
+    "full_pd_002_to_004": "earlier target/reward/observation contracts; superseded by final 31D configuration"
+  },
+  "exclusions": [
+    "vendor URDF, mesh, SDK and USD",
+    "private cooked vertices",
+    "full local transitions"
+  ],
+  "limitations": [
+    "gravity controller only 32-step quick test",
+    "one fixed seed replayed 32 steps in same process",
+    "two environments tested on CPU",
+    "no PPO, hardware, ROS or CAN",
+    "truncated tracking error above 5 mm may weaken learning signal"
+  ],
+  "independent_reanalysis": {
+    "action_transitions_verified": 3760,
+    "max_action_target_difference_rad": 0,
+    "max_reward_difference": 4.336808689942018e-19,
+    "max_reference_position_difference_to_b1_m": 5.551115123125783e-17,
+    "method": "independent formulas and interpolation against B1-S1 reference at 60 Hz"
+  }
+}

@@ -34,7 +34,7 @@ def read_rows(path: Path) -> list[dict]:
     return rows
 
 
-def inspect_and_screen_cooked(stage, geometry, rows, output, padding):
+def inspect_and_screen_cooked(stage, geometry, rows, output, padding, robot_path="/World/Robot"):
     """Read actual runtime convex meshes, then screen a CAD+cooked outer envelope."""
     from pxr import Gf, UsdGeom
     import omni.physx
@@ -43,8 +43,8 @@ def inspect_and_screen_cooked(stage, geometry, rows, output, padding):
     cache = UsdGeom.XformCache()
     raw, comparisons = {}, []
     for name in geometry.model.links:
-        link = stage.GetPrimAtPath(f"/World/Robot/{name}")
-        collider = stage.GetPrimAtPath(f"/World/Robot/{name}/collisions")
+        link = stage.GetPrimAtPath(f"{robot_path}/{name}")
+        collider = stage.GetPrimAtPath(f"{robot_path}/{name}/collisions")
         path = str(collider.GetPath())
         count = cooking.get_nb_convex_mesh_data(path)
         if count != 1:
