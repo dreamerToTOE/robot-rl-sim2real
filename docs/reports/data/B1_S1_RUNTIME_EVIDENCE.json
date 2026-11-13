@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-13 Asia/Seoul",
+  "baseline_commit": "a8f1ba99d903ed8f7e3284c0eb63aa6ca29b6199",
+  "runtime": {
+    "python": "3.10.12",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.4",
+    "isaac_sim": "4.5.0",
+    "isaac_lab_extension_version": "0.41.3",
+    "isaac_lab_commit": "90b79bb2d44feb8d833f260f2bf37da3487180ba"
+  },
+  "urdf_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+  "usd_layer_sha256": {
+    "configuration/robot_base.usd": "2db129694bf89559f720dfa54ebbed9caab11ba24bf6081a18eca8f186a14b1e",
+    "configuration/robot_physics.usd": "07b74119a8548873f4f285c2817ce60fc70802cef31641f9e9bb3dd1986624d8",
+    "configuration/robot_sensor.usd": "eb488734e010845ad4b630e80707eaa3fb679f1c9e20803194e8402a144c522b",
+    "robot.usd": "73d1767873486f9ff31beb24332f0d10f5bf2e641d6fe83359d4eff1daf98092"
+  },
+  "factory_fingerprint": {
+    "checked_files": 110,
+    "changed_files": [],
+    "scope": "selected existing environment metadata/config/launcher files"
+  },
+  "accepted_runs": [
+    {
+      "run": "trial_005",
+      "status": "PASS",
+      "observed_shell_exit_code": 0,
+      "result_marker_found": true,
+      "timeline_stop_marker_found": true,
+      "error_line_count": 0,
+      "command": "env FACTORY_VENV=/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01 PYTHONDONTWRITEBYTECODE=1 timeout --signal=TERM --kill-after=10s 180s /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/outputs/isaac-factory-repro/scripts/run_sim.sh scripts/run_circle_trajectory.py --urdf /tmp/student_ros_b0_audit.sYOXbS/student_ros/src/episode1_urdf_1113/urdf/episode1_urdf_1113.urdf --usd model_assets/local/b0_r1_usd/robot.usd --trajectory runs/b1_s1/plan_005/trajectory.jsonl --output runs/b1_s1/trial_005 --headless --device cpu > runs/b1_s1_trial_005.log 2>&1",
+      "raw_output_directory": "runs/b1_s1/trial_005",
+      "raw_log": "runs/b1_s1_trial_005.log"
+    },
+    {
+      "run": "trial_006_gravity",
+      "status": "PASS",
+      "observed_shell_exit_code": 0,
+      "result_marker_found": true,
+      "timeline_stop_marker_found": true,
+      "error_line_count": 0,
+      "command": "env FACTORY_VENV=/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01 PYTHONDONTWRITEBYTECODE=1 timeout --signal=TERM --kill-after=10s 180s /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/outputs/isaac-factory-repro/scripts/run_sim.sh scripts/run_circle_trajectory.py --urdf /tmp/student_ros_b0_audit.sYOXbS/student_ros/src/episode1_urdf_1113/urdf/episode1_urdf_1113.urdf --usd model_assets/local/b0_r1_usd/robot.usd --trajectory runs/b1_s1/plan_005/trajectory.jsonl --output runs/b1_s1/trial_006_gravity --gravity-compensation --headless --device cpu > runs/b1_s1_trial_006_gravity.log 2>&1",
+      "raw_output_directory": "runs/b1_s1/trial_006_gravity",
+      "raw_log": "runs/b1_s1_trial_006_gravity.log"
+    },
+    {
+      "run": "collision_control_010",
+      "status": "PASS",
+      "observed_shell_exit_code": 0,
+      "result_marker_found": true,
+      "timeline_stop_marker_found": true,
+      "error_line_count": 0,
+      "command": "env FACTORY_VENV=/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01 PYTHONDONTWRITEBYTECODE=1 timeout --signal=TERM --kill-after=10s 80s /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/outputs/isaac-factory-repro/scripts/run_sim.sh scripts/validate_collision_positive.py --output runs/b1_s1/collision_control_010 --headless --device cpu > runs/b1_s1_collision_control_010.log 2>&1",
+      "raw_output_directory": "runs/b1_s1/collision_control_010",
+      "raw_log": "runs/b1_s1_collision_control_010.log"
+    },
+    {
+      "run": "collision_robot_positive_011",
+      "status": "PASS",
+      "observed_shell_exit_code": 0,
+      "result_marker_found": true,
+      "timeline_stop_marker_found": true,
+      "error_line_count": 0,
+      "command": "env FACTORY_VENV=/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01 PYTHONDONTWRITEBYTECODE=1 timeout --signal=TERM --kill-after=10s 80s /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/outputs/isaac-factory-repro/scripts/run_sim.sh scripts/validate_collision_positive.py --robot-usd model_assets/local/b0_r1_usd/robot.usd --robot-urdf /tmp/student_ros_b0_audit.sYOXbS/student_ros/src/episode1_urdf_1113/urdf/episode1_urdf_1113.urdf --robot-case positive --output runs/b1_s1/collision_robot_positive_011 --headless --device cpu > runs/b1_s1_collision_robot_positive_011.log 2>&1",
+      "raw_output_directory": "runs/b1_s1/collision_robot_positive_011",
+      "raw_log": "runs/b1_s1_collision_robot_positive_011.log"
+    },
+    {
+      "run": "collision_robot_negative_009",
+      "status": "PASS",
+      "observed_shell_exit_code": 0,
+      "result_marker_found": true,
+      "timeline_stop_marker_found": true,
+      "error_line_count": 0,
+      "command": "env FACTORY_VENV=/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01 PYTHONDONTWRITEBYTECODE=1 timeout --signal=TERM --kill-after=10s 80s /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/outputs/isaac-factory-repro/scripts/run_sim.sh scripts/validate_collision_positive.py --robot-usd model_assets/local/b0_r1_usd/robot.usd --robot-urdf /tmp/student_ros_b0_audit.sYOXbS/student_ros/src/episode1_urdf_1113/urdf/episode1_urdf_1113.urdf --robot-case negative --output runs/b1_s1/collision_robot_negative_009 --headless --device cpu > runs/b1_s1_collision_robot_negative_009.log 2>&1",
+      "raw_output_directory": "runs/b1_s1/collision_robot_negative_009",
+      "raw_log": "runs/b1_s1_collision_robot_negative_009.log"
+    }
+  ],
+  "planning_command": "python3 scripts/generate_circle_trajectory.py --urdf /tmp/student_ros_b0_audit.sYOXbS/student_ros/src/episode1_urdf_1113/urdf/episode1_urdf_1113.urdf --output runs/b1_s1/plan_005",
+  "evaluation_command": "python3 scripts/evaluate_circle_trajectory.py --baseline runs/b1_s1/trial_005 --gravity-control runs/b1_s1/trial_006_gravity --output docs/reports/data --figures docs/reports/figures",
+  "failed_or_superseded": {
+    "collision_control_001_to_003": "no contacts; global contact processing was disabled during context construction",
+    "debug/control_004": "dynamic motion observed but contact setting True and zero headers",
+    "debug/control_005": "only moved enabling after context construction: setting False, positive contacts",
+    "collision_robot_negative_008": "integer initial-state dtype mismatch before physical steps; fixed by float conversion",
+    "trial_001": "pre-AppLauncher SciPy import mixed venv/Kit modules and invalid contact reporting; excluded",
+    "early_reference_rejection": "direct constant-speed start/stop had about 10.9 rad/s^2 reference acceleration; rejected offline; reason retained from interactive output, not a separate original stdout log"
+  },
+  "source_sha256_at_export": {
+    "scripts/run_circle_trajectory.py": "9e2804bdf0fc672392fcbecabd353f16b88247a5ef1b99bcc09223cceb5e9532",
+    "scripts/validate_collision_positive.py": "70b431ad62ee226d84adb6bf8c2652df7f99f94124a1e59e0124426d3011e8fa",
+    "scripts/generate_circle_trajectory.py": "8ab093eb2ef9de6e323dbee1c6376848e22879e81eb96335afc39bc216c85a8d",
+    "scripts/check_model_collisions.py": "e6acebdfaf372c9f2886f7ee3506fb5a03e596bc724f7cc412a5fab6bca2ba37",
+    "configs/b1_s1_circle_sim_only.json": "9f310b025b35ca796b913e46ec6ae73ea20eafabd1f9b9a2c2327d1b542901e9",
+    "configs/b1_s1_collision_sim_only.json": "35444fe79a6fd07e5685e5ab2e53b10d7d0c7f53402cab7f22c2de83ddc30c1d"
+  },
+  "training_started": false,
+  "hardware_connected": false,
+  "vendor_assets_published": false
+}

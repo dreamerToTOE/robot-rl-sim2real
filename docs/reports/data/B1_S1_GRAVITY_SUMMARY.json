@@ -1,0 +1,350 @@
+{
+  "parameter_class": "SIM_ONLY",
+  "status": "PASS",
+  "sample_count": 4320,
+  "duration_s": 18.000000938773155,
+  "failures": [],
+  "contacts": [],
+  "tracking": {
+    "circle_sample_count": 1921,
+    "rmse_position_m": 0.00012438503242891895,
+    "p95_position_m": 0.00012486006374877936,
+    "maximum_position_m": 0.00012490408697983277,
+    "rmse_orientation_rad": 8.998668142380035e-06,
+    "maximum_orientation_rad": 1.2338391440797906e-05,
+    "joint_error_rmse_rad": {
+      "joint6": 0.0010966309390686591,
+      "joint4": 0.001048276847323812,
+      "joint3": 0.0005377193967054603,
+      "joint2": 0.0004651256472538601,
+      "joint1": 0.00031694902844554775,
+      "joint5": 8.771943336492739e-05
+    },
+    "joint_error_max_rad": {
+      "joint6": 0.0016500486975515039,
+      "joint4": 0.001577698953566159,
+      "joint3": 0.0007605638045895535,
+      "joint2": 0.0006576089705417898,
+      "joint1": 0.0004645685289616265,
+      "joint5": 0.00013194043403813582
+    },
+    "mean_actual_minus_reference_position_m": [
+      1.8903312100553002e-08,
+      -6.338932430856421e-08,
+      -7.173533148869031e-08
+    ]
+  },
+  "circle_completion": {
+    "reference_phase_span_rad": 6.283185307179585,
+    "actual_angle_span_rad": 6.283190858377556,
+    "actual_radius_mean_m": 0.010001155177356145,
+    "actual_radius_rmse_m": 1.1967016477573146e-06,
+    "completed_one_circle": true,
+    "execution_time_s": 8.000000417232513
+  },
+  "joint_dynamics": {
+    "maximum_abs_velocity_rad_s": 0.28109344840049744,
+    "maximum_abs_acceleration_rad_s2": 0.4332411289215088,
+    "maximum_abs_effort_nm": 1.4446746110916138,
+    "effort_saturation_fraction": 0.0,
+    "maximum_target_step_rad": 0.0011718614367026148,
+    "maximum_actual_step_rad": 0.0011712312698364258
+  },
+  "safety": {
+    "collision_reports": 0,
+    "collision_detected": false,
+    "limit_violation": false,
+    "nonfinite_state": false,
+    "maximum_fk_position_error_m": 2.2085915211054468e-07,
+    "maximum_fk_orientation_error_rad": 7.498885677659774e-07,
+    "minimum_aabb_distance_lower_bound_m": 0.0
+  },
+  "gravity_static_bias": {
+    "initial_hold_max_joint_error_rad": 1.513402042574441e-10,
+    "final_hold_max_joint_error_rad": 1.0187719453824684e-05,
+    "circle_mean_position_error_m": 0.00012438465571090764,
+    "interpretation": "Position-only PD has no measured-model gravity compensation; this is SIM_ONLY evidence."
+  },
+  "controller_mode": "PD_PLUS_MODEL_GRAVITY_SIM_ONLY",
+  "raw_states_sha256": "57bc9d9df1630b2489ba911bfb456b443e83c8261aabf82bac642b436f17be93",
+  "runtime_metadata": {
+    "python": "3.10.12",
+    "torch": "2.7.0+cu128",
+    "numpy": "1.26.4",
+    "isaac_sim": "4.5.0",
+    "isaac_lab_extension_version": "0.41.3",
+    "isaac_lab_commit": "90b79bb2d44feb8d833f260f2bf37da3487180ba",
+    "urdf_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+    "usd_sha256": {
+      "configuration/robot_base.usd": "2db129694bf89559f720dfa54ebbed9caab11ba24bf6081a18eca8f186a14b1e",
+      "configuration/robot_physics.usd": "07b74119a8548873f4f285c2817ce60fc70802cef31641f9e9bb3dd1986624d8",
+      "configuration/robot_sensor.usd": "eb488734e010845ad4b630e80707eaa3fb679f1c9e20803194e8402a144c522b",
+      "robot.usd": "73d1767873486f9ff31beb24332f0d10f5bf2e641d6fe83359d4eff1daf98092"
+    },
+    "config_sha256": "9f310b025b35ca796b913e46ec6ae73ea20eafabd1f9b9a2c2327d1b542901e9",
+    "trajectory_sha256": "d7936252dfb46fc4149d81b9ffbcdd60ac35dcac31c6ce2897b30a979c5ec163",
+    "script_sha256": "9e2804bdf0fc672392fcbecabd353f16b88247a5ef1b99bcc09223cceb5e9532",
+    "physx_joint_order": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6"
+    ],
+    "canonical_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "physx_body_order": [
+      "base_link",
+      "link1",
+      "link2",
+      "link3",
+      "link4",
+      "link5",
+      "link6"
+    ],
+    "fixed_base": true,
+    "self_collisions": true,
+    "contact_processing_disabled": false,
+    "collision_checks": [
+      {
+        "link": "base_link",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link1",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link2",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link3",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link4",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link5",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      },
+      {
+        "link": "link6",
+        "approximation": "convexHull",
+        "enabled": true,
+        "contact_offset_m": 0.001
+      }
+    ],
+    "explicit_pair_filters": [],
+    "collision_groups": [],
+    "connected_pair_collision_enabled": {
+      "joint1": false,
+      "joint2": false,
+      "joint3": false,
+      "joint4": false,
+      "joint5": false,
+      "joint6": false,
+      "root_joint": false
+    },
+    "controller_mode": "PD_PLUS_MODEL_GRAVITY_SIM_ONLY",
+    "clock_source": "SimulationContext.current_time and current_time_step_index, read after each physics step",
+    "initial_clock_s": 0.008333333767950535,
+    "final_clock_s": 18.008334272541106,
+    "physx_cooked_hull": "runtime vertices queried in local link axes; compared and screened with CAD/cooked padded envelope",
+    "cooked_geometry_report": {
+      "status": "PASS",
+      "links": [
+        {
+          "link": "base_link",
+          "convex_count": 1,
+          "cooked_polygon_count": 33,
+          "source_hull_vertex_count": 94,
+          "cooked_vertex_count": 39,
+          "maximum_cooked_outside_source_plane_m": 0.0017930632411663344,
+          "maximum_source_outside_cooked_plane_m": 0.0003949773490215941,
+          "source_convex_hull_volume_m3": 0.0024384749639435165,
+          "cooked_convex_hull_volume_m3": 0.002451374361778739
+        },
+        {
+          "link": "link1",
+          "convex_count": 1,
+          "cooked_polygon_count": 62,
+          "source_hull_vertex_count": 400,
+          "cooked_vertex_count": 40,
+          "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+          "maximum_source_outside_cooked_plane_m": 0.0024400128553542927,
+          "source_convex_hull_volume_m3": 0.0008514629698000428,
+          "cooked_convex_hull_volume_m3": 0.000825936910539607
+        },
+        {
+          "link": "link2",
+          "convex_count": 1,
+          "cooked_polygon_count": 53,
+          "source_hull_vertex_count": 438,
+          "cooked_vertex_count": 34,
+          "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+          "maximum_source_outside_cooked_plane_m": 0.0021257094788730696,
+          "source_convex_hull_volume_m3": 0.0005693412690714174,
+          "cooked_convex_hull_volume_m3": 0.0005466924676747554
+        },
+        {
+          "link": "link3",
+          "convex_count": 1,
+          "cooked_polygon_count": 61,
+          "source_hull_vertex_count": 573,
+          "cooked_vertex_count": 37,
+          "maximum_cooked_outside_source_plane_m": 5.551115123125783e-17,
+          "maximum_source_outside_cooked_plane_m": 0.0026111938521799077,
+          "source_convex_hull_volume_m3": 0.0007121113397363375,
+          "cooked_convex_hull_volume_m3": 0.0006865906678792878
+        },
+        {
+          "link": "link4",
+          "convex_count": 1,
+          "cooked_polygon_count": 56,
+          "source_hull_vertex_count": 502,
+          "cooked_vertex_count": 34,
+          "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+          "maximum_source_outside_cooked_plane_m": 0.001729419475104993,
+          "source_convex_hull_volume_m3": 0.0006382451567529802,
+          "cooked_convex_hull_volume_m3": 0.0006199210531850304
+        },
+        {
+          "link": "link5",
+          "convex_count": 1,
+          "cooked_polygon_count": 63,
+          "source_hull_vertex_count": 835,
+          "cooked_vertex_count": 43,
+          "maximum_cooked_outside_source_plane_m": 3.469446951953614e-17,
+          "maximum_source_outside_cooked_plane_m": 0.0019364828761727904,
+          "source_convex_hull_volume_m3": 0.00016981017353512025,
+          "cooked_convex_hull_volume_m3": 0.0001639273097571117
+        },
+        {
+          "link": "link6",
+          "convex_count": 1,
+          "cooked_polygon_count": 60,
+          "source_hull_vertex_count": 540,
+          "cooked_vertex_count": 36,
+          "maximum_cooked_outside_source_plane_m": 5.4643789493269423e-17,
+          "maximum_source_outside_cooked_plane_m": 0.00133646791563315,
+          "source_convex_hull_volume_m3": 3.121887686766645e-05,
+          "cooked_convex_hull_volume_m3": 2.9121384744202577e-05
+        }
+      ],
+      "reference_samples_checked": 4320,
+      "nonadjacent_pairs_checked": 64800,
+      "lp_fallback_count": 3019,
+      "padding_per_shape_m": 0.001,
+      "method": "per-link convex hull of CAD and runtime cooked vertices, outward plane padding for contact skin",
+      "scope": "sampled reference poses, standard direct-joint exclusions; not continuous swept-volume or hardware safety"
+    }
+  },
+  "by_phase": {
+    "initial_hold": {
+      "sample_count": 480,
+      "start_time_s": 0.004166666883975267,
+      "end_time_s": 2.0000001043081284,
+      "rmse_position_m": 5.2879458680501347e-11,
+      "p95_position_m": 5.4059775215560306e-11,
+      "maximum_position_m": 5.406311452345933e-11,
+      "maximum_abs_velocity_rad_s": 4.6566128730773926e-09,
+      "maximum_abs_acceleration_rad_s2": 2.2351741790771484e-07,
+      "maximum_abs_effort_nm": 0.8832546472549438,
+      "steady_max_joint_error_rad": 1.513402042574441e-10
+    },
+    "ingress": {
+      "sample_count": 480,
+      "start_time_s": 2.0041667711921036,
+      "end_time_s": 4.000000208616257,
+      "rmse_position_m": 0.0004039643457855546,
+      "p95_position_m": 0.0006328739901529808,
+      "maximum_position_m": 0.0006362733287899313,
+      "maximum_abs_velocity_rad_s": 0.28109344840049744,
+      "maximum_abs_acceleration_rad_s2": 0.4332411289215088,
+      "maximum_abs_effort_nm": 1.4432058334350586,
+      "steady_max_joint_error_rad": 0.0009288965172944974
+    },
+    "circle_startup": {
+      "sample_count": 239,
+      "start_time_s": 4.004166875500232,
+      "end_time_s": 4.995833593886346,
+      "rmse_position_m": 7.804426843003836e-05,
+      "p95_position_m": 0.00012428808714087992,
+      "maximum_position_m": 0.00012440491220738054,
+      "maximum_abs_velocity_rad_s": 0.09175041317939758,
+      "maximum_abs_acceleration_rad_s2": 0.16988486051559448,
+      "maximum_abs_effort_nm": 1.4421100616455078,
+      "steady_max_joint_error_rad": 0.0014527413622081597
+    },
+    "circle": {
+      "sample_count": 1921,
+      "start_time_s": 5.000000260770321,
+      "end_time_s": 13.000000678002834,
+      "rmse_position_m": 0.00012438503242891895,
+      "p95_position_m": 0.00012486006374877936,
+      "maximum_position_m": 0.00012490408697983277,
+      "maximum_abs_velocity_rad_s": 0.10421564429998398,
+      "maximum_abs_acceleration_rad_s2": 0.08113503456115723,
+      "maximum_abs_effort_nm": 1.442185401916504,
+      "steady_max_joint_error_rad": 0.0014531792743403826
+    },
+    "circle_stop": {
+      "sample_count": 240,
+      "start_time_s": 13.00416734488681,
+      "end_time_s": 14.000000730156898,
+      "rmse_position_m": 7.765324470350069e-05,
+      "p95_position_m": 0.00012423116654806238,
+      "maximum_position_m": 0.00012432908450983797,
+      "maximum_abs_velocity_rad_s": 0.09178515523672104,
+      "maximum_abs_acceleration_rad_s2": 0.16974002122879028,
+      "maximum_abs_effort_nm": 1.4421772956848145,
+      "steady_max_joint_error_rad": 0.0001609490782958356
+    },
+    "egress": {
+      "sample_count": 480,
+      "start_time_s": 14.004167397040874,
+      "end_time_s": 16.000000834465027,
+      "rmse_position_m": 0.00041565750834829255,
+      "p95_position_m": 0.000647787994250219,
+      "maximum_position_m": 0.0006511143453581019,
+      "maximum_abs_velocity_rad_s": 0.27728256583213806,
+      "maximum_abs_acceleration_rad_s2": 0.42730629444122314,
+      "maximum_abs_effort_nm": 1.4446746110916138,
+      "steady_max_joint_error_rad": 0.000916148269064998
+    },
+    "final_hold": {
+      "sample_count": 480,
+      "start_time_s": 16.004167501349002,
+      "end_time_s": 18.000000938773155,
+      "rmse_position_m": 4.7400358576289644e-07,
+      "p95_position_m": 3.704055954375851e-07,
+      "maximum_position_m": 5.055774259732695e-06,
+      "maximum_abs_velocity_rad_s": 0.0004976465133950114,
+      "maximum_abs_acceleration_rad_s2": 0.03365733660757542,
+      "maximum_abs_effort_nm": 0.88425612449646,
+      "steady_max_joint_error_rad": 1.5106113582241676e-10
+    }
+  }
+}

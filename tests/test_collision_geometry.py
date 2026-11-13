@@ -17,7 +17,7 @@ except ModuleNotFoundError as error:
     missing_dependency = error.name
 else:
     missing_dependency = None
-    from check_model_collisions import CollisionModel, hull_planes, intersection_inradius
+    from check_model_collisions import CollisionModel, hull_planes, intersection_inradius, hull_relation
 
 
 @unittest.skipIf(missing_dependency, f"Optional collision dependency unavailable: {missing_dependency}")
@@ -50,6 +50,13 @@ class TestCollisionGeometry(unittest.TestCase):
         with self.assertRaises(ValueError):
             intersection_inradius(self.planes * 2, self.planes)
 
+    def test_cooked_hull_relation_detects_inflation_and_simplification(self):
+        relation = hull_relation(self.cube, self.cube * 1.1)
+        self.assertAlmostEqual(relation["maximum_cooked_outside_source_plane_m"], 0.1)
+        self.assertLessEqual(relation["maximum_source_outside_cooked_plane_m"], 0)
+        relation = hull_relation(self.cube, self.cube * 0.9)
+        self.assertAlmostEqual(relation["maximum_source_outside_cooked_plane_m"], 0.1)
+
     def test_local_stl_loading_aabb_certificate_and_lp_fallback(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -72,6 +79,11 @@ class TestCollisionGeometry(unittest.TestCase):
             self.assertTrue(fast["separated"])
             self.assertEqual(fast["aabb_distance_lower_bound_m"], 1.0)
             self.assertIsNone(fast["intersection_inradius_m"])
+            padded = model.check({}, include_adjacent=True, aabb_fast=True, padding_m=0.6)[0]
+            self.assertFalse(padded["separated"])
+            self.assertAlmostEqual(padded["intersection_inradius_m"], 0.1)
+            with self.assertRaises(ValueError):
+                model.check({}, padding_m=-1.0)
             source.write_text(template.format(1))
             overlap = CollisionModel(source).check({}, include_adjacent=True, aabb_fast=True)[0]
             self.assertFalse(overlap["separated"])

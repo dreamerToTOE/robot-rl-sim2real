@@ -1,0 +1,15 @@
+{
+  "runs": [
+    "trial_003",
+    "trial_005"
+  ],
+  "sample_count": 4320,
+  "note": "same reference/PD; final run additionally logs actual SimulationContext clock; comparison is state values on the same physical step",
+  "maximum_absolute_difference": {
+    "q_actual_rad": 0.0,
+    "dq_actual_rad_s": 0.0,
+    "joint_effort_nm": 0.0,
+    "position_error_m": 0.0,
+    "actual_link6_position_m": 0.0
+  }
+}

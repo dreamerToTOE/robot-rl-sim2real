@@ -1,0 +1,426 @@
+{
+  "parameter_class": "SIM_ONLY",
+  "status": "PASS",
+  "cases": {
+    "cuboids": {
+      "status": "PASS",
+      "failures": [],
+      "contacts": [
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            -0.015334725379943848,
+            -0.015334725379943848,
+            -0.015334725379943848,
+            -0.015334725379943848
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0002023167908191681,
+            0.00027542561292648315,
+            0.0020002610981464386,
+            0.0019976869225502014
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00014876315253786743,
+            0.00015697618073318154
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00012931227684020996,
+            0.00016335397958755493,
+            0.002017505466938019
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00016594694170635194,
+            0.0001621739793336019
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00017026066780090332,
+            0.00017409026622772217,
+            0.002015918493270874
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0001801601320039481,
+            0.00017906815628521144
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00019056349992752075,
+            0.00019031018018722534,
+            0.0020062774419784546
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0001976517669390887,
+            0.000197722198208794
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00021163374185562134,
+            0.00021160393953323364,
+            0.0019707679748535156
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00022102892398834229,
+            0.00022120773792266846,
+            0.002002120018005371
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00022998452186584473,
+            0.00023242831230163574,
+            0.002039968967437744
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0002485215663909912,
+            0.0002452731132507324,
+            0.0019280612468719482
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0002634972333908081,
+            0.00026004016399383545,
+            0.001974344253540039
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0002772510051727295,
+            0.00027373433113098145,
+            0.0020328760147094727
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0002979487180709839,
+            0.00029464217368513346,
+            0.0020197629928588867
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00031638145446777344,
+            0.00031277703237719834,
+            0.001956760883331299
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.00041553378105163574,
+            0.0004022778884973377,
+            0.0020065605640411377
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0003670156002044678,
+            0.0003638580092228949,
+            0.0021393895149230957
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0006119608879089355,
+            0.0005884766578674316,
+            0.002137124538421631
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0008340179920196533,
+            0.0007828177185729146,
+            0.0020300745964050293
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0011086463928222656,
+            0.0010224604047834873,
+            0.0019031167030334473
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0015162527561187744,
+            0.0013877523597329855,
+            0.0019576549530029297
+          ]
+        },
+        {
+          "actor0": "/World/Positive/Dynamic",
+          "actor1": "/World/Positive/Static",
+          "separations_m": [
+            0.0020001374650746584,
+            0.0019596086349338293
+          ]
+        }
+      ],
+      "positive_contact_count": 24,
+      "negative_contact_count": 0,
+      "pair_filters": [],
+      "collision_groups": [],
+      "all_colliders_enabled": true,
+      "steps": 120,
+      "contact_processing_disabled": false,
+      "method": "enabled cuboids: falling positive impacts a kinematic cube; separated negative",
+      "elapsed_wall_s": 3.949586378999811
+    },
+    "robot_positive": {
+      "status": "PASS",
+      "failures": [],
+      "contacts": [
+        {
+          "actor0": "/World/Robot/link6",
+          "actor1": "/World/Robot/base_link",
+          "separations_m": [
+            -0.03270040825009346,
+            -0.03346022963523865,
+            -0.032167352735996246,
+            -0.032159436494112015
+          ]
+        },
+        {
+          "actor0": "/World/Robot/link5",
+          "actor1": "/World/Robot/base_link",
+          "separations_m": [
+            -0.0175207257270813,
+            -0.017720267176628113,
+            -0.016057215631008148
+          ]
+        },
+        {
+          "actor0": "/World/Robot/link4",
+          "actor1": "/World/Robot/base_link",
+          "separations_m": [
+            -0.004893414676189423,
+            -0.004765622317790985,
+            -0.005627155303955078,
+            -0.0056002214550971985
+          ]
+        }
+      ],
+      "positive_contact_count": 1,
+      "negative_contact_count": 0,
+      "pair_filters": [],
+      "collision_groups": [],
+      "all_colliders_enabled": true,
+      "steps": 1,
+      "contact_processing_disabled": false,
+      "method": "independent robot self-collision spawn fixture, stop at first contact",
+      "case": "positive",
+      "q_initial_rad": {
+        "joint1": -0.22631794183214238,
+        "joint2": 1.3640500051180244,
+        "joint3": 1.3249342146350873,
+        "joint4": 3.3013022669587104,
+        "joint5": -0.15177414116686672,
+        "joint6": 2.391969975827369
+      },
+      "self_collisions_enabled": true,
+      "expected_nonadjacent_pair": [
+        "base_link",
+        "link6"
+      ],
+      "elapsed_wall_s": 3.9196061399998143
+    },
+    "robot_negative": {
+      "status": "PASS",
+      "failures": [],
+      "contacts": [],
+      "positive_contact_count": 0,
+      "negative_contact_count": 0,
+      "pair_filters": [],
+      "collision_groups": [],
+      "all_colliders_enabled": true,
+      "steps": 60,
+      "contact_processing_disabled": false,
+      "method": "independent robot self-collision spawn fixture, stop at first contact",
+      "case": "negative",
+      "q_initial_rad": {
+        "joint1": 0.0,
+        "joint2": 0.0,
+        "joint3": 0.0,
+        "joint4": 0.0,
+        "joint5": 0.0,
+        "joint6": 0.0
+      },
+      "self_collisions_enabled": true,
+      "expected_nonadjacent_pair": [
+        "base_link",
+        "link6"
+      ],
+      "elapsed_wall_s": 3.922219651998603
+    }
+  },
+  "cooked_mesh_comparison": {
+    "status": "PASS",
+    "links": [
+      {
+        "link": "base_link",
+        "convex_count": 1,
+        "cooked_polygon_count": 33,
+        "source_hull_vertex_count": 94,
+        "cooked_vertex_count": 39,
+        "maximum_cooked_outside_source_plane_m": 0.0017930632411663344,
+        "maximum_source_outside_cooked_plane_m": 0.0003949773490215941,
+        "source_convex_hull_volume_m3": 0.0024384749639435165,
+        "cooked_convex_hull_volume_m3": 0.002451374361778739
+      },
+      {
+        "link": "link1",
+        "convex_count": 1,
+        "cooked_polygon_count": 62,
+        "source_hull_vertex_count": 400,
+        "cooked_vertex_count": 40,
+        "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+        "maximum_source_outside_cooked_plane_m": 0.0024400128553542927,
+        "source_convex_hull_volume_m3": 0.0008514629698000428,
+        "cooked_convex_hull_volume_m3": 0.000825936910539607
+      },
+      {
+        "link": "link2",
+        "convex_count": 1,
+        "cooked_polygon_count": 53,
+        "source_hull_vertex_count": 438,
+        "cooked_vertex_count": 34,
+        "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+        "maximum_source_outside_cooked_plane_m": 0.0021257094788730696,
+        "source_convex_hull_volume_m3": 0.0005693412690714174,
+        "cooked_convex_hull_volume_m3": 0.0005466924676747554
+      },
+      {
+        "link": "link3",
+        "convex_count": 1,
+        "cooked_polygon_count": 61,
+        "source_hull_vertex_count": 573,
+        "cooked_vertex_count": 37,
+        "maximum_cooked_outside_source_plane_m": 5.551115123125783e-17,
+        "maximum_source_outside_cooked_plane_m": 0.0026111938521799077,
+        "source_convex_hull_volume_m3": 0.0007121113397363375,
+        "cooked_convex_hull_volume_m3": 0.0006865906678792878
+      },
+      {
+        "link": "link4",
+        "convex_count": 1,
+        "cooked_polygon_count": 56,
+        "source_hull_vertex_count": 502,
+        "cooked_vertex_count": 34,
+        "maximum_cooked_outside_source_plane_m": 2.7755575615628914e-17,
+        "maximum_source_outside_cooked_plane_m": 0.001729419475104993,
+        "source_convex_hull_volume_m3": 0.0006382451567529802,
+        "cooked_convex_hull_volume_m3": 0.0006199210531850304
+      },
+      {
+        "link": "link5",
+        "convex_count": 1,
+        "cooked_polygon_count": 63,
+        "source_hull_vertex_count": 835,
+        "cooked_vertex_count": 43,
+        "maximum_cooked_outside_source_plane_m": 3.469446951953614e-17,
+        "maximum_source_outside_cooked_plane_m": 0.0019364828761727904,
+        "source_convex_hull_volume_m3": 0.00016981017353512025,
+        "cooked_convex_hull_volume_m3": 0.0001639273097571117
+      },
+      {
+        "link": "link6",
+        "convex_count": 1,
+        "cooked_polygon_count": 60,
+        "source_hull_vertex_count": 540,
+        "cooked_vertex_count": 36,
+        "maximum_cooked_outside_source_plane_m": 5.4643789493269423e-17,
+        "maximum_source_outside_cooked_plane_m": 0.00133646791563315,
+        "source_convex_hull_volume_m3": 3.121887686766645e-05,
+        "cooked_convex_hull_volume_m3": 2.9121384744202577e-05
+      }
+    ],
+    "reference_samples_checked": 4320,
+    "nonadjacent_pairs_checked": 64800,
+    "lp_fallback_count": 3019,
+    "padding_per_shape_m": 0.001,
+    "method": "per-link convex hull of CAD and runtime cooked vertices, outward plane padding for contact skin",
+    "scope": "sampled reference poses, standard direct-joint exclusions; not continuous swept-volume or hardware safety"
+  },
+  "robot_positive_cpu_witness": {
+    "q_rad": [
+      -0.22631794183214238,
+      1.3640500051180244,
+      1.3249342146350873,
+      3.3013022669587104,
+      -0.15177414116686672,
+      2.391969975827369
+    ],
+    "witness": {
+      "a": "base_link",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": 0.012500000018626445,
+      "separated": false
+    },
+    "index": 255
+  }
+}

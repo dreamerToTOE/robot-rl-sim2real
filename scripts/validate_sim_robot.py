@@ -120,6 +120,7 @@ def main():
         from pxr import PhysxSchema, PhysicsSchemaTools, Usd, UsdPhysics
         import omni.physx
         import omni.usd
+        import carb
         import scipy
         from check_model_collisions import CollisionModel
         geometry = CollisionModel(args.urdf)
@@ -129,6 +130,9 @@ def main():
             use_fabric=False, enable_scene_query_support=True,
             physx=sim_utils.PhysxCfg(enable_enhanced_determinism=True),
         ))
+        # SimulationContext disables contact processing during construction.
+        carb.settings.get_settings().set_bool("/physics/disableContactProcessing", False)
+        assert carb.settings.get_settings().get("/physics/disableContactProcessing") is False
         robot = Articulation(ArticulationCfg(
             prim_path="/World/Robot", articulation_root_prim_path="/root_joint",
             spawn=sim_utils.UsdFileCfg(
@@ -193,6 +197,7 @@ def main():
 
         subscription = omni.physx.get_physx_simulation_interface().subscribe_contact_report_events(on_contact)
         sim.reset()
+        assert carb.settings.get_settings().get("/physics/disableContactProcessing") is False
         assert robot.is_fixed_base
         assert set(robot.joint_names) == set(names) and len(robot.joint_names) == 6
         assert set(robot.body_names) == set(model.links)

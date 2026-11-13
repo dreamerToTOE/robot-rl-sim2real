@@ -1,0 +1,45 @@
+{
+  "parameter_class": "SIM_ONLY",
+  "purpose": "Classical IK plus joint-position PD circle baseline; no RL, ROS, SDK, or hardware",
+  "joint_names": ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6"],
+  "q_start_rad": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+  "q_home_rad": [0.0, 0.2, -0.2, 0.2, 0.3, 0.2],
+  "dt_s": 0.004166666666666667,
+  "hold_duration_s": 2.0,
+  "ingress_duration_s": 2.0,
+  "egress_duration_s": 2.0,
+  "circle_ramp_duration_s": 1.0,
+  "candidate_radii_m": [0.005, 0.01],
+  "candidate_periods_s": [6.0, 8.0, 10.0],
+  "selected_radius_m": 0.01,
+  "selected_period_s": 8.0,
+  "circle_phase_profile": "one constant-omega circle bracketed by smooth velocity ramps",
+  "reference_velocity_limit_rad_s": 0.5,
+  "reference_acceleration_limit_rad_s2": 2.0,
+  "observed_acceleration_stop_rad_s2": 40.0,
+  "minimum_circle_jacobian_sigma": 0.01,
+  "source_urdf_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+  "controller": {
+    "stiffness_nm_rad": 200.0,
+    "damping_nm_s_rad": 4.0,
+    "armature_kg_m2": 0.02,
+    "friction_coefficient": 0.0,
+    "effort_limit_nm": 20.0,
+    "velocity_limit_sim_rad_s": 0.5,
+    "contact_offset_m": 0.001,
+    "rest_offset_m": 0.0,
+    "solver_position_iterations": 8,
+    "solver_velocity_iterations": 4
+  },
+  "screening": {
+    "ik_position_scale_m": 0.01,
+    "ik_residual_tolerance": 1e-7,
+    "collision_method": "URDF CAD convex hull, AABB certificate with exact LP fallback",
+    "physx_cooked_hull": "UNKNOWN"
+  },
+  "rationale": {
+    "home_pose": "A nonsingular, locally collision-screened configuration reached from B1-S0 q=0 by a smooth joint-space ingress",
+    "circle": "The center places q_home on the circle before a smooth phase ramp; a constant-omega revolution and stop ramp follow with fixed link6 orientation",
+    "limits": "Derivative and collision gates are experiment-only; they are not hardware specifications or deployment limits"
+  }
+}

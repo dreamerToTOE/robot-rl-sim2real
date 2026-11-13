@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 from pathlib import Path
 import struct
 import time
@@ -27,6 +28,20 @@ def hull_planes(points):
     return ConvexHull(points).equations
 
 
+def hull_relation(source_vertices, cooked_vertices):
+    """Containment witnesses and volumes; plane residuals are not Hausdorff distances."""
+    source, cooked = np.asarray(source_vertices), np.asarray(cooked_vertices)
+    source_planes, cooked_planes = hull_planes(source), hull_planes(cooked)
+    return {
+        "source_hull_vertex_count": len(ConvexHull(source).vertices),
+        "cooked_vertex_count": len(cooked),
+        "maximum_cooked_outside_source_plane_m": float(np.max(cooked @ source_planes[:, :3].T + source_planes[:, 3])),
+        "maximum_source_outside_cooked_plane_m": float(np.max(source @ cooked_planes[:, :3].T + cooked_planes[:, 3])),
+        "source_convex_hull_volume_m3": float(ConvexHull(source).volume),
+        "cooked_convex_hull_volume_m3": float(ConvexHull(cooked).volume),
+    }
+
+
 def intersection_inradius(planes_a, planes_b):
     """Positive = overlap, zero = contact, negative = disjoint convex hulls."""
     planes = np.vstack((planes_a, planes_b))
@@ -36,8 +51,12 @@ def intersection_inradius(planes_a, planes_b):
     if not np.allclose(lengths, 1.0, atol=1e-8):
         raise ValueError("Hull planes must have unit normals")
     constraints = np.column_stack((planes[:, :3], np.ones(len(planes))))
+    # Tight feasibility tolerances avoid a HiGHS status-4 result on nearly
+    # touching hulls even when the returned point is otherwise valid.
     result = linprog([0, 0, 0, -1], A_ub=constraints, b_ub=-planes[:, 3],
-                     bounds=[(None, None)] * 4, method="highs")
+                     bounds=[(None, None)] * 4, method="highs",
+                     options={"dual_feasibility_tolerance": 1e-9,
+                              "primal_feasibility_tolerance": 1e-9})
     if not result.success or not np.isfinite(result.x).all():
         raise RuntimeError(f"Collision LP failed closed: {result.message}")
     if np.max(constraints @ result.x + planes[:, 3]) > 1e-7:
@@ -94,7 +113,9 @@ class CollisionModel:
                                   "mesh_sha256": hashlib.sha256(raw).hexdigest(),
                                   "hull_planes": len(self.hulls[link.attrib["name"]])})
 
-    def check(self, q, include_adjacent=False, aabb_fast=False):
+    def check(self, q, include_adjacent=False, aabb_fast=False, padding_m=0.0):
+        if not math.isfinite(padding_m) or padding_m < 0:
+            raise ValueError("Collision padding must be finite and nonnegative")
         for joint in self.model.moving:
             if not joint.limits["lower"] <= q[joint.name] <= joint.limits["upper"]:
                 raise ValueError(f"Position limit violated: {joint.name}")
@@ -104,10 +125,10 @@ class CollisionModel:
         for name, planes in self.hulls.items():
             transform = np.array(transforms[name])
             normals = planes[:, :3] @ transform[:3, :3].T
-            world[name] = np.column_stack((normals, planes[:, 3] - normals @ transform[:3, 3]))
+            world[name] = np.column_stack((normals, planes[:, 3] - normals @ transform[:3, 3] - padding_m))
             if aabb_fast:
                 vertices = self.vertices[name] @ transform[:3, :3].T + transform[:3, 3]
-                bounds[name] = (vertices.min(axis=0), vertices.max(axis=0))
+                bounds[name] = (vertices.min(axis=0) - padding_m, vertices.max(axis=0) + padding_m)
         rows = []
         for a, b in itertools.combinations(self.model.links, 2):
             adjacent = frozenset((a, b)) in self.adjacent

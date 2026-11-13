@@ -1,0 +1,254 @@
+{
+  "status": "PASS",
+  "parameter_class": "SIM_ONLY",
+  "sample_count": 4320,
+  "duration_s": 18.0,
+  "phases": {
+    "initial_hold": 480,
+    "ingress": 480,
+    "circle_startup": 239,
+    "circle": 1921,
+    "circle_stop": 240,
+    "egress": 480,
+    "final_hold": 480
+  },
+  "circle": {
+    "center_m": [
+      0.3300382964089144,
+      0.007054066113572588,
+      0.4020848551710966
+    ],
+    "radius_m": 0.01,
+    "period_s": 8.0,
+    "phase_start_rad": 0.0,
+    "phase_end_rad": 6.283185307179585,
+    "completed_one_reference_circle": true,
+    "q_home_rad": [
+      0.0,
+      0.2,
+      -0.2,
+      0.2,
+      0.3,
+      0.2
+    ],
+    "q_range_rad": [
+      0.07208204839481003,
+      0.10578163767828568,
+      0.1223561518816735,
+      0.23816538231239426,
+      0.019910261346551883,
+      0.24916985035797898
+    ]
+  },
+  "ik": {
+    "method": "bounded scipy least_squares on six pose residuals, previous solution warm start",
+    "fixed_orientation": true,
+    "maximum_residual": 1.2421870419979254e-14,
+    "jacobian_sampling": "every 8th reference sample and last sample per phase; mixed metre/radian units",
+    "jacobian_by_phase": {
+      "initial_hold": {
+        "samples": 61,
+        "minimum_singular_value": 1.367538268120106e-07,
+        "maximum_condition_number": 12946962.90732908
+      },
+      "ingress": {
+        "samples": 61,
+        "minimum_singular_value": 1.4127517303193292e-07,
+        "maximum_condition_number": 12532610.545052938
+      },
+      "circle_startup": {
+        "samples": 31,
+        "minimum_singular_value": 0.0544353466217163,
+        "maximum_condition_number": 32.44294861987719
+      },
+      "circle": {
+        "samples": 241,
+        "minimum_singular_value": 0.049494239217105905,
+        "maximum_condition_number": 35.665871664922264
+      },
+      "circle_stop": {
+        "samples": 31,
+        "minimum_singular_value": 0.05512652434372338,
+        "maximum_condition_number": 32.07476371273433
+      },
+      "egress": {
+        "samples": 61,
+        "minimum_singular_value": 1.367538268120106e-07,
+        "maximum_condition_number": 12946962.90732908
+      },
+      "final_hold": {
+        "samples": 61,
+        "minimum_singular_value": 1.367538268120106e-07,
+        "maximum_condition_number": 12946962.90732908
+      }
+    }
+  },
+  "continuity": {
+    "maximum_reference_joint_step_rad": 0.0011718614367026148,
+    "maximum_reference_joint_speed_rad_s": 0.2812467448086242,
+    "maximum_reference_joint_acceleration_rad_s2": 0.43298364257797206,
+    "maximum_reference_fk_position_residual_m": 1.2421834456202435e-16,
+    "maximum_reference_fk_orientation_residual_rad": 3.03151999608803e-15,
+    "minimum_joint_position_margin_rad": 0.523598776
+  },
+  "collision": {
+    "all_samples_screened": true,
+    "minimum_aabb_distance_lower_bound_m": 0.0,
+    "method": "URDF CAD convex hull CPU screening; AABB separation certificate with exact LP fallback",
+    "physx_cooked_hull": "UNKNOWN"
+  },
+  "candidate_search": [
+    {
+      "radius_m": 0.005,
+      "period_s": 6.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.570486711776906e-14,
+      "minimum_jacobian_sigma": 0.05194935599088886,
+      "maximum_jacobian_condition": 33.985146306995404,
+      "maximum_coarse_joint_speed_rad_s": 0.06516979210129142,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.0354038067047249,
+        0.053546443783866526,
+        0.06335046188452548,
+        0.11507683451149879,
+        0.0114238040736368,
+        0.12040493315008466
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    },
+    {
+      "radius_m": 0.005,
+      "period_s": 8.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.1104516613749368e-14,
+      "minimum_jacobian_sigma": 0.05183556091879232,
+      "maximum_jacobian_condition": 34.052600239848985,
+      "maximum_coarse_joint_speed_rad_s": 0.04883311761446907,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.03543540018448397,
+        0.053494044622491715,
+        0.06320144068995337,
+        0.11500951956986191,
+        0.011471653521341107,
+        0.12034870034912862
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    },
+    {
+      "radius_m": 0.005,
+      "period_s": 10.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.2413483752352058e-14,
+      "minimum_jacobian_sigma": 0.0517774344789524,
+      "maximum_jacobian_condition": 34.08559829503774,
+      "maximum_coarse_joint_speed_rad_s": 0.03905388295750356,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.03545888956594882,
+        0.05348255572298968,
+        0.06314699155895848,
+        0.11494473601704244,
+        0.011510834975299922,
+        0.12028961208692118
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    },
+    {
+      "radius_m": 0.01,
+      "period_s": 6.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.2423616043089064e-14,
+      "minimum_jacobian_sigma": 0.04965741519141321,
+      "maximum_jacobian_condition": 35.56015695332816,
+      "maximum_coarse_joint_speed_rad_s": 0.13899624501089503,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.07187496979406838,
+        0.10592761315202798,
+        0.12287193184350258,
+        0.23813606830732098,
+        0.019668950430117293,
+        0.24908913618496742
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    },
+    {
+      "radius_m": 0.01,
+      "period_s": 8.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.1105427529049382e-14,
+      "minimum_jacobian_sigma": 0.049496191556998144,
+      "maximum_jacobian_condition": 35.66587166682214,
+      "maximum_coarse_joint_speed_rad_s": 0.10415706690162528,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.07202978599538387,
+        0.1057735138301012,
+        0.12234675612257999,
+        0.23814976375228228,
+        0.01989349827225334,
+        0.24915363134453417
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    },
+    {
+      "radius_m": 0.01,
+      "period_s": 10.0,
+      "sample_count": 61,
+      "max_ik_residual": 1.1103823370655704e-14,
+      "minimum_jacobian_sigma": 0.04941697699720067,
+      "maximum_jacobian_condition": 35.71330078353673,
+      "maximum_coarse_joint_speed_rad_s": 0.08322406902279667,
+      "minimum_aabb_distance_lower_bound_m": 0.0,
+      "joint_range_rad": [
+        0.07210376453415375,
+        0.10569917772191774,
+        0.12209809095772892,
+        0.23778451604394327,
+        0.02010217729338798,
+        0.24880459244113373
+      ],
+      "status": "PASS",
+      "velocity_limit_pass": true
+    }
+  ],
+  "home_pose_link6": [
+    [
+      0.2896255506536286,
+      -0.058709353773119796,
+      0.9553377686389901,
+      0.33927709173402726
+    ],
+    [
+      -0.3807229681559514,
+      -0.9228234135627722,
+      0.05871089250619976,
+      0.00322723178992169
+    ],
+    [
+      0.8781611822023929,
+      -0.3807232054391941,
+      -0.28962523873619916,
+      0.4020848551710966
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "limits_used": {
+    "reference_velocity_limit_rad_s": 0.5,
+    "reference_acceleration_limit_rad_s2": 2.0
+  },
+  "trajectory_sha256": "d7936252dfb46fc4149d81b9ffbcdd60ac35dcac31c6ce2897b30a979c5ec163",
+  "configuration_sha256": "9f310b025b35ca796b913e46ec6ae73ea20eafabd1f9b9a2c2327d1b542901e9"
+}

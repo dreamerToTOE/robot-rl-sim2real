@@ -1,0 +1,8 @@
+{
+  "parameter_class": "SIM_ONLY",
+  "same_reference_and_pd_parameters": true,
+  "baseline_rmse_m": 0.003407316958900539,
+  "gravity_compensated_rmse_m": 0.00012438503242891895,
+  "rmse_reduction_fraction": 0.9634947279841395,
+  "note": "PhysX model gravity feedforward, uncalibrated CAD parameters; original PD baseline retained"
+}
