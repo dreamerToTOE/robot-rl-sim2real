@@ -1,0 +1,26 @@
+{
+  "trials": [
+    "012",
+    "013"
+  ],
+  "compared_rows": 6240,
+  "published_samples": [
+    285,
+    285
+  ],
+  "script_sha256": "3130e96a3c5f437c5d59b0c67abeb81d0f12e9d0f678070843a89e3482af2da8",
+  "config_sha256": "cb6ec5ac819d15aa6c8a5f0a1bfb58ec82652eec21c9f2545a64e3a8f80e9954",
+  "max_abs_difference_q_target_rad": 0.0,
+  "max_abs_difference_q_actual_rad": 0.0,
+  "max_abs_difference_dq_actual_rad_s": 0.0,
+  "max_abs_difference_joint_effort_nm": 0.0,
+  "max_abs_difference_computed_torque_nm": 0.0,
+  "max_abs_difference_projected_joint_force_nm": 0.0,
+  "max_abs_difference_fk_position_error_m": 0.0,
+  "max_abs_difference_fk_orientation_error_rad": 0.0,
+  "max_fk_position_error_m": 1.9027724863506738e-07,
+  "max_fk_orientation_error_rad": 5.905715872177947e-07,
+  "max_abs_dq_rad_s": 0.4165670573711395,
+  "max_abs_applied_effort_nm": 2.9335336685180664,
+  "min_aabb_distance_lower_bound_m": 0.00240680337452831
+}

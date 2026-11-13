@@ -1,0 +1,235 @@
+{
+  "urdf_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+  "q0_rad": {
+    "joint1": 0.0,
+    "joint2": 0.0,
+    "joint3": 0.0,
+    "joint4": 0.0,
+    "joint5": 0.0,
+    "joint6": 0.0
+  },
+  "method": "exact CAD vertex convex hull, halfspace LP; not PhysX cooked hull",
+  "baseline_pairs": [
+    {
+      "a": "base_link",
+      "b": "link1",
+      "adjacent": true,
+      "intersection_inradius_m": -0.0,
+      "separated": false
+    },
+    {
+      "a": "base_link",
+      "b": "link2",
+      "adjacent": false,
+      "intersection_inradius_m": -0.007732063108476496,
+      "separated": true
+    },
+    {
+      "a": "base_link",
+      "b": "link3",
+      "adjacent": false,
+      "intersection_inradius_m": -0.10741001819533375,
+      "separated": true
+    },
+    {
+      "a": "base_link",
+      "b": "link4",
+      "adjacent": false,
+      "intersection_inradius_m": -0.1397501315582023,
+      "separated": true
+    },
+    {
+      "a": "base_link",
+      "b": "link5",
+      "adjacent": false,
+      "intersection_inradius_m": -0.13975005135130988,
+      "separated": true
+    },
+    {
+      "a": "base_link",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": -0.15312276019224655,
+      "separated": true
+    },
+    {
+      "a": "link1",
+      "b": "link2",
+      "adjacent": true,
+      "intersection_inradius_m": 0.014782050710501184,
+      "separated": false
+    },
+    {
+      "a": "link1",
+      "b": "link3",
+      "adjacent": false,
+      "intersection_inradius_m": -0.065044227443261,
+      "separated": true
+    },
+    {
+      "a": "link1",
+      "b": "link4",
+      "adjacent": false,
+      "intersection_inradius_m": -0.10488004247951115,
+      "separated": true
+    },
+    {
+      "a": "link1",
+      "b": "link5",
+      "adjacent": false,
+      "intersection_inradius_m": -0.11978952352200375,
+      "separated": true
+    },
+    {
+      "a": "link1",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": -0.14702791447804384,
+      "separated": true
+    },
+    {
+      "a": "link2",
+      "b": "link3",
+      "adjacent": true,
+      "intersection_inradius_m": 0.005019567659275359,
+      "separated": false
+    },
+    {
+      "a": "link2",
+      "b": "link4",
+      "adjacent": false,
+      "intersection_inradius_m": -0.018473160876557343,
+      "separated": true
+    },
+    {
+      "a": "link2",
+      "b": "link5",
+      "adjacent": false,
+      "intersection_inradius_m": -0.06537166435225672,
+      "separated": true
+    },
+    {
+      "a": "link2",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": -0.09361649950784531,
+      "separated": true
+    },
+    {
+      "a": "link3",
+      "b": "link4",
+      "adjacent": true,
+      "intersection_inradius_m": 0.013000018015266528,
+      "separated": false
+    },
+    {
+      "a": "link3",
+      "b": "link5",
+      "adjacent": false,
+      "intersection_inradius_m": -0.04199993883049607,
+      "separated": true
+    },
+    {
+      "a": "link3",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": -0.07099992791045433,
+      "separated": true
+    },
+    {
+      "a": "link4",
+      "b": "link5",
+      "adjacent": true,
+      "intersection_inradius_m": 0.025499999523162842,
+      "separated": false
+    },
+    {
+      "a": "link4",
+      "b": "link6",
+      "adjacent": false,
+      "intersection_inradius_m": -0.001498610649343752,
+      "separated": true
+    },
+    {
+      "a": "link5",
+      "b": "link6",
+      "adjacent": true,
+      "intersection_inradius_m": 0.004000023927549953,
+      "separated": false
+    }
+  ],
+  "neighbor_configurations": 86,
+  "all_neighbor_nonadjacent_separated": true,
+  "runtime_trial": "012",
+  "runtime_samples": 6240,
+  "nonadjacent_pairs_per_sample": 15,
+  "runtime_aabb_fast_separation_count": 93600,
+  "runtime_exact_lp_fallback_pairs": 0,
+  "minimum_aabb_distance_lower_bound_m": 0.00240680337452831,
+  "note": "AABB distance is a lower bound, not exact surface distance. PhysX cooked hull and contact callback positive trigger are unverified.",
+  "authored_usd_collision_mesh_statistics": [
+    {
+      "link": "base_link",
+      "points": 3648,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 0.0,
+      "max_usd_vertex_outside_urdf_hull_m": 1.3877787807814457e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 1.3877787807814457e-17
+    },
+    {
+      "link": "link1",
+      "points": 9606,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 0.0,
+      "max_usd_vertex_outside_urdf_hull_m": 2.7755575615628914e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 2.7755575615628914e-17
+    },
+    {
+      "link": "link2",
+      "points": 4902,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 8.326672684699528e-17,
+      "max_usd_vertex_outside_urdf_hull_m": 1.1102230246251565e-16,
+      "max_urdf_vertex_outside_usd_hull_m": 2.7755575615628914e-17
+    },
+    {
+      "link": "link3",
+      "points": 14034,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 6.283435673255512e-17,
+      "max_usd_vertex_outside_urdf_hull_m": 5.551115123125783e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 6.938893903907228e-17
+    },
+    {
+      "link": "link4",
+      "points": 15204,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 7.426972779820453e-23,
+      "max_usd_vertex_outside_urdf_hull_m": 2.7755575615628914e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 2.7755575615628914e-17
+    },
+    {
+      "link": "link5",
+      "points": 10524,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 2.7971606350437396e-17,
+      "max_usd_vertex_outside_urdf_hull_m": 6.938893903907228e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 1.249000902703301e-16
+    },
+    {
+      "link": "link6",
+      "points": 8640,
+      "approximation": "convexHull",
+      "collision_enabled": true,
+      "vertex_set_hausdorff_m": 7.85046240742779e-17,
+      "max_usd_vertex_outside_urdf_hull_m": 7.979727989493313e-17,
+      "max_urdf_vertex_outside_usd_hull_m": 7.979727989493313e-17
+    }
+  ]
+}
