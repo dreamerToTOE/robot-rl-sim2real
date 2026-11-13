@@ -43,6 +43,10 @@ def main():
     if args.device!='cpu': raise ValueError('B2-S0 tests require --device cpu')
     args.output.mkdir(parents=True,exist_ok=False)
     task=json.loads(args.config.read_text()); task['controller_mode']=args.controller
+    try:
+        config_key = str(args.config.resolve().relative_to(REPO.resolve()))
+    except ValueError:
+        config_key = str(args.config.resolve())
     write_json(args.output/'input_config.json',task)
     write_json(args.output/'command.json',{'argv':sys.argv,'parameter_class':'SIM_ONLY'})
     app=env=None; failures=[]; checks={}; records=[]; metadata={}
@@ -72,9 +76,10 @@ def main():
                   'maximum_episode_steps':env.max_episode_length,'finite_horizon':env.cfg.is_finite_horizon,
                   'physx_joint_order':env.robot.joint_names,
                   'canonical_indices':env.indices,'urdf_sha256':digest(args.urdf),'usd_layer_sha256':env.usd_hashes,
+                  'config_path':config_key,'config_sha256':digest(args.config),
                   'source_sha256':{p:digest(REPO/p) for p in ('scripts/test_circle_rl_env.py',
                     'src/robot_rl_sim2real/isaac_circle_env.py','src/robot_rl_sim2real/circle_rl.py',
-                    'configs/b2_s0_circle_sim_only.json','scripts/run_circle_trajectory.py','scripts/check_model_collisions.py')},
+                    'scripts/run_circle_trajectory.py','scripts/check_model_collisions.py')},
                   'collision_filter_scope':'cross-environment only; intra-robot self collision enabled',
                   'training_started':False,'hardware_connected':False}
 
@@ -276,6 +281,7 @@ def main():
 
         assert continuity['compared_transitions']>0
         checks['observation_continuity']={'status':'PASS',**continuity,'scope':'consecutive non-reset observations'}
+        metadata['source_sha256'][config_key] = digest(args.config)
         metadata['reset_count']=len(env.reset_records)
         metadata['contact_event_count']=len(env.contact_events)
         metadata['cooked_mesh_comparison']=env.cooked_report

@@ -68,22 +68,71 @@ def observation(q, dq, position, reference_position, reference_velocity, previou
 
 
 def reward_components(error_m, action, previous_action, maximum_steps, cfg):
-    """Three terms, with strictly positive step reward to avoid profiting from early exit."""
+    """Three terms, with strictly positive step reward to avoid profiting from early exit.
+
+    ``clipped_quadratic`` is the B2-S0 contract.  B2-S1 may select
+    ``exp_linear`` to keep a position signal above the 5 mm scale while
+    retaining the same action costs and positive floor.
+    """
     error_m = np.asarray(error_m, dtype=float)
     action, previous_action = np.asarray(action), np.asarray(previous_action)
     floor, amplitude_weight, change_weight = (cfg['tracking_reward_floor'], cfg['action_cost_weight'], cfg['action_change_cost_weight'])
+    mode = cfg.get('tracking_reward_mode', 'clipped_quadratic')
     if (not all(math.isfinite(x) for x in (floor, amplitude_weight, change_weight, cfg['tracking_reward_scale_m']))
             or amplitude_weight < 0 or change_weight < 0 or cfg['tracking_reward_scale_m'] <= 0
-            or floor <= amplitude_weight + 4*change_weight):
+            or floor <= amplitude_weight + 4*change_weight
+            or mode not in ('clipped_quadratic', 'exp_linear')):
         raise ValueError('tracking floor must exceed the maximum action costs')
     if (maximum_steps <= 0 or not np.isfinite(error_m).all() or np.any(error_m < 0)
             or not np.isfinite(action).all() or not np.isfinite(previous_action).all()
             or np.any(np.abs(action) > 1+1e-6) or np.any(np.abs(previous_action) > 1+1e-6)):
         raise ValueError("invalid reward input")
     scale = 1.0 / maximum_steps
-    position = scale * (1 + cfg["tracking_reward_floor"]
-                        - np.minimum((error_m / cfg["tracking_reward_scale_m"]) ** 2, 1.0))
+    normalized_error = error_m / cfg["tracking_reward_scale_m"]
+    if mode == 'clipped_quadratic':
+        tracking_shape = 1.0 - np.minimum(normalized_error ** 2, 1.0)
+    else:
+        tracking_shape = np.exp(-normalized_error)
+    position = scale * (cfg["tracking_reward_floor"] + tracking_shape)
     amplitude = -scale * cfg["action_cost_weight"] * np.mean(action**2, axis=-1)
     change = -scale * cfg["action_change_cost_weight"] * np.mean((action - previous_action)**2, axis=-1)
     return {"tracking": position, "action": amplitude, "action_change": change,
             "total": position + amplitude + change}
+
+
+def evaluate_circle_success(records, *, rmse_threshold_m=0.005,
+                            p95_threshold_m=0.005, max_threshold_m=0.008,
+                            phase_span_tolerance_rad=1e-6):
+    """Evaluate one complete SIM_ONLY episode with frozen circle criteria.
+
+    A timeout is an acceptable episode end, but it cannot make an episode
+    successful without a full circle and all three error limits.
+    """
+    if not records or any(not isinstance(row, dict) for row in records):
+        raise ValueError("records must be a non-empty sequence of mappings")
+    limits = (rmse_threshold_m, p95_threshold_m, max_threshold_m)
+    if any(not math.isfinite(x) or x <= 0 for x in limits) or phase_span_tolerance_rad < 0:
+        raise ValueError("invalid success thresholds")
+    circle = [row for row in records if row.get("reference_segment") == "circle"]
+    errors = np.asarray([row.get("position_error_m", float("nan")) for row in circle], dtype=float)
+    phases = np.asarray([row.get("reference_phase_rad", float("nan")) for row in circle], dtype=float)
+    finite = errors.size > 0 and np.isfinite(errors).all() and np.isfinite(phases).all()
+    phase_span = float(phases.max() - phases.min()) if finite else 0.0
+    complete_circle = finite and phase_span >= 2 * math.pi - phase_span_tolerance_rad
+    rmse = float(np.sqrt(np.mean(errors ** 2))) if finite else float("nan")
+    p95 = float(np.percentile(errors, 95)) if finite else float("nan")
+    maximum = float(np.max(errors)) if finite else float("nan")
+    terminated = any(bool(row.get("terminated", False)) for row in records)
+    truncated = bool(records[-1].get("truncated", False))
+    ended = terminated or truncated
+    success = (complete_circle and ended and not terminated and truncated
+               and rmse <= rmse_threshold_m and p95 <= p95_threshold_m
+               and maximum <= max_threshold_m)
+    return {"success": bool(success), "complete_circle": bool(complete_circle),
+            "circle_phase_span_rad": phase_span, "circle_rmse_m": rmse,
+            "circle_p95_m": p95, "circle_max_m": maximum,
+            "terminated": terminated, "truncated": truncated,
+            "criterion": {"phase_span_rad": 2 * math.pi,
+                          "rmse_threshold_m": rmse_threshold_m,
+                          "p95_threshold_m": p95_threshold_m,
+                          "max_threshold_m": max_threshold_m}}

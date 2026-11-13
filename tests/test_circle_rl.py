@@ -15,7 +15,8 @@ except ModuleNotFoundError:
     available = False
 else:
     available = True
-    from robot_rl_sim2real.circle_rl import map_action, observation, reference_at, reward_components
+    from robot_rl_sim2real.circle_rl import (evaluate_circle_success, map_action,
+                                              observation, reference_at, reward_components)
 
 
 @unittest.skipUnless(available, "Optional NumPy/SciPy unavailable")
@@ -108,11 +109,55 @@ class TestCircleRL(unittest.TestCase):
         self.assertLess(float(stationary['total'].sum()), .53)
         self.assertAlmostEqual(float(tracked['total'].sum()), 1.03)
 
+    def test_exp_linear_reward_preserves_signal_above_five_mm(self):
+        cfg = self.cfg | {'tracking_reward_mode': 'exp_linear'}
+        errors = np.array([0.0, .005, .010, .020])
+        result = reward_components(errors, np.zeros((4, 6)), np.zeros((4, 6)), 630, cfg)
+        expected = (.03 + np.exp(-errors / .005)) / 630
+        np.testing.assert_allclose(result['tracking'], expected)
+        self.assertGreater(float(result['tracking'][2]), float(result['tracking'][3]))
+        self.assertGreater(float(result['tracking'][1]), float(result['tracking'][2]))
+        self.assertGreater(float(result['total'].min()), 0.0)
+
+        old = reward_components(errors, np.zeros((4, 6)), np.zeros((4, 6)), 630, self.cfg)
+        self.assertAlmostEqual(float(old['tracking'][2]), float(old['tracking'][3]))
+
+    def test_reward_mode_rejects_unknown_value(self):
+        with self.assertRaises(ValueError):
+            reward_components([0.0], np.zeros((1, 6)), np.zeros((1, 6)), 630,
+                              self.cfg | {'tracking_reward_mode': 'unknown'})
+
     def test_batched_actions_are_independent(self):
         q=np.zeros((2,6)); a=q.copy(); a[1,2]=1
         result=map_action(a,q,q,-1,1,self.cfg)
         np.testing.assert_array_equal(result['target'][0],0)
         self.assertAlmostEqual(result['target'][1,2],.00075)
+
+    def test_circle_success_requires_full_circle_and_clean_timeout(self):
+        records = [{'reference_segment': 'circle', 'reference_phase_rad': phase,
+                    'position_error_m': .002, 'terminated': False, 'truncated': False}
+                   for phase in np.linspace(0, 2*math.pi, 9)]
+        records.append({'reference_segment': 'hold', 'reference_phase_rad': 2*math.pi,
+                        'position_error_m': .003, 'terminated': False, 'truncated': True})
+        result = evaluate_circle_success(records)
+        self.assertTrue(result['success'])
+        self.assertAlmostEqual(result['circle_rmse_m'], .002)
+        records[-1]['truncated'] = False
+        self.assertFalse(evaluate_circle_success(records)['success'])
+        records[-1]['truncated'] = True
+        records[3]['terminated'] = True
+        self.assertFalse(evaluate_circle_success(records)['success'])
+
+    def test_circle_success_error_limits_are_independent(self):
+        records = [{'reference_segment': 'circle', 'reference_phase_rad': phase,
+                    'position_error_m': .002, 'terminated': False, 'truncated': False}
+                   for phase in np.linspace(0, 2*math.pi, 9)]
+        records[4]['position_error_m'] = .009
+        records.append({'reference_segment': 'hold', 'reference_phase_rad': 2*math.pi,
+                        'position_error_m': .003, 'terminated': False, 'truncated': True})
+        result = evaluate_circle_success(records)
+        self.assertFalse(result['success'])
+        self.assertGreater(result['circle_max_m'], result['criterion']['max_threshold_m'])
 
 
 if __name__ == '__main__':
