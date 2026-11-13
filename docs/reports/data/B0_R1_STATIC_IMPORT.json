@@ -1,0 +1,235 @@
+{
+  "status": "PARTIAL",
+  "geometry_checks": "PASS",
+  "source_sha256": "78c1b35c65fe747876c19c06c3ca3492d22aeac4416c536f585da494ef6842ae",
+  "rigid_bodies": [
+    "base_link",
+    "link1",
+    "link2",
+    "link3",
+    "link4",
+    "link5",
+    "link6"
+  ],
+  "revolute_joints": [
+    {
+      "name": "joint1",
+      "body0": "base_link",
+      "body1": "link1",
+      "lower_deg": -180.0,
+      "upper_deg": 159.99998474121094,
+      "world_axis_error": 0.0,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "joint2",
+      "body0": "link1",
+      "body1": "link2",
+      "lower_deg": -90.0,
+      "upper_deg": 90.0,
+      "world_axis_error": 1.1062368654333612e-07,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "joint3",
+      "body0": "link2",
+      "body1": "link3",
+      "lower_deg": -83.0,
+      "upper_deg": 79.99999237060547,
+      "world_axis_error": 2.6208701875595493e-11,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "joint4",
+      "body0": "link3",
+      "body1": "link4",
+      "lower_deg": -30.0,
+      "upper_deg": 304.9999694824219,
+      "world_axis_error": 1.1975983913299305e-07,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "joint5",
+      "body0": "link4",
+      "body1": "link5",
+      "lower_deg": -109.99999237060547,
+      "upper_deg": 109.99999237060547,
+      "world_axis_error": 1.384096208086614e-07,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "joint6",
+      "body0": "link5",
+      "body1": "link6",
+      "lower_deg": -30.0,
+      "upper_deg": 304.9999694824219,
+      "world_axis_error": 7.37785867527805e-08,
+      "drive_schemas": [
+        "PhysicsDriveAPI:angular"
+      ],
+      "stiffness_damping": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "articulation_roots": [
+    "/episode1_urdf_1113/root_joint"
+  ],
+  "mesh_count": 14,
+  "inertial_checks": [
+    {
+      "name": "base_link",
+      "mass_kg": 1.944345235824585,
+      "inertia_max_abs_error_kg_m2": 4.017287830518357e-10,
+      "com_max_abs_error_m": 1.5746729406518334e-09
+    },
+    {
+      "name": "link1",
+      "mass_kg": 0.6232264637947083,
+      "inertia_max_abs_error_kg_m2": 2.0594872725612778e-10,
+      "com_max_abs_error_m": 5.661459745454067e-09
+    },
+    {
+      "name": "link2",
+      "mass_kg": 0.5695887207984924,
+      "inertia_max_abs_error_kg_m2": 1.4516609702502903e-11,
+      "com_max_abs_error_m": 2.359244771765745e-09
+    },
+    {
+      "name": "link3",
+      "mass_kg": 0.5498263239860535,
+      "inertia_max_abs_error_kg_m2": 1.187831235281711e-10,
+      "com_max_abs_error_m": 1.6374331474056092e-09
+    },
+    {
+      "name": "link4",
+      "mass_kg": 0.39634445309638977,
+      "inertia_max_abs_error_kg_m2": 2.0140775440664893e-11,
+      "com_max_abs_error_m": 5.718278961452938e-09
+    },
+    {
+      "name": "link5",
+      "mass_kg": 0.15175031125545502,
+      "inertia_max_abs_error_kg_m2": 2.624053142201259e-12,
+      "com_max_abs_error_m": 4.351262440638326e-10
+    },
+    {
+      "name": "link6",
+      "mass_kg": 0.01829664595425129,
+      "inertia_max_abs_error_kg_m2": 6.598693623851085e-13,
+      "com_max_abs_error_m": 1.3285283637087808e-10
+    }
+  ],
+  "zero_pose_errors": {
+    "base_link": {
+      "position_m": 0.0,
+      "orientation_rad": 0.0,
+      "delta_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "link1": {
+      "position_m": 0.0,
+      "orientation_rad": 0.0,
+      "delta_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "link2": {
+      "position_m": 6.340894967697281e-09,
+      "orientation_rad": 9.864448051509888e-08,
+      "delta_position_m": [
+        2.980232241545089e-10,
+        -4.470348362317633e-10,
+        6.318092354851146e-09
+      ]
+    },
+    "link3": {
+      "position_m": 2.0113228673797295e-08,
+      "orientation_rad": 1.1699129763898089e-07,
+      "delta_position_m": [
+        2.980232241545089e-10,
+        -1.9832318200879717e-08,
+        3.3365108453864423e-09
+      ]
+    },
+    "link4": {
+      "position_m": 2.1923956126092475e-08,
+      "orientation_rad": 1.7247380570110015e-07,
+      "delta_position_m": [
+        -5.044305813328709e-09,
+        -2.019393765748112e-08,
+        -6.886197279065698e-09
+      ]
+    },
+    "link5": {
+      "position_m": 3.236103547373283e-08,
+      "orientation_rad": 1.2877994809850293e-07,
+      "delta_position_m": [
+        -2.9905361242921202e-09,
+        -2.9521909969373786e-08,
+        1.2913177083184735e-08
+      ]
+    },
+    "link6": {
+      "position_m": 4.321847746786365e-08,
+      "orientation_rad": 8.260645045392977e-08,
+      "delta_position_m": [
+        -1.0144948714430058e-08,
+        -2.987661434494506e-08,
+        2.9534805323638835e-08
+      ]
+    }
+  },
+  "unresolved_assets": [
+    "OmniPBR.mdl",
+    "OmniPBR.mdl",
+    "OmniPBR.mdl"
+  ],
+  "physics_steps": 0,
+  "timeline_played": false,
+  "limits_are_hardware_verified": false,
+  "scope": "static conversion only; no articulation view/servo or collision validation",
+  "generated_usd_sha256": {
+    "configuration/robot_base.usd": "2db129694bf89559f720dfa54ebbed9caab11ba24bf6081a18eca8f186a14b1e",
+    "configuration/robot_physics.usd": "07b74119a8548873f4f285c2817ce60fc70802cef31641f9e9bb3dd1986624d8",
+    "configuration/robot_sensor.usd": "eb488734e010845ad4b630e80707eaa3fb679f1c9e20803194e8402a144c522b",
+    "robot.usd": "73d1767873486f9ff31beb24332f0d10f5bf2e641d6fe83359d4eff1daf98092"
+  },
+  "audit_script_sha256": "a403ccaeef8f0a3d4424cdafe278399f3537a0a033b7616928b6bc6853134a7f"
+}

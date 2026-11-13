@@ -74,16 +74,18 @@ python3 -m unittest discover -s tests -v
 
 ## 4. URDF 与 SDF 差异
 
+> B0-R1A 更正：joint6 的轴同为 +Z；axis 的文本差异本身不能证明 FK 不等价。统一关节定义后的数值结论见 [B0-R1 FK 比较](B0_R1_URDF_SDF_FK_COMPARISON.md)。本节保留 B0 静态字段记录。
+
 `student_ros/src/episode1_urdf_1113/urdf/robot.sdf` 也能解析出 7 links/6 joints，但不能直接视为 URDF 的等价副本：
 
 | 项目 | URDF | SDF | 风险 |
 |---|---|---|---|
 | joint1 limits | -π / 2.7925 | -3 / 3 | 数值不同 |
-| joint2/3/4/6 axis | `-Z,-Z,-Z,+Z` | `+Z,+Z,+Z,+Z` | 方向相反，FK/控制符号可能翻转 |
+| joint2/3/4 axis | `-Z,-Z,-Z` | `+Z,+Z,+Z` | 需先统一 joint 角度定义再比较 FK；joint6 无轴差异 |
 | joint2 origin z | 0.166 | 0.1655 | 0.5 mm 差异 |
 | joint3 origin rpy | `0,0,3.1416` | `0,0,-3.141585...` | 约 π 表示不同，需验证转换语义 |
 | joint4/5/6 pose | URDF origin/rpy | SDF 转换后的 pose | 不能仅凭文本相等判定 |
-| limits | 每轴不同的 URDF位置界 | 所有轴约 `[-3,3]` | SDF 放宽了位置范围 |
+| limits | 每轴不同的 URDF位置界 | 所有轴约 `[-3,3]` | SDF 改变了边界，部分放宽、部分收紧 |
 | effort/velocity | 全为 0 | 全为 0 | 都不能用于真实动态约束 |
 
 证据：SDF joint 段 `robot.sdf:39-56`、`:94-111`、`:149-166`、`:204-221`、`:259-276`、`:314-331`。在 B1 之前必须选定唯一仿真 canonical 模型，逐关节对齐 axis、origin、limit、mesh 和 TCP；当前导入判定 **BLOCKED**。

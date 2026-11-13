@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-13 Asia/Seoul",
+  "baseline_commit": "e68b6fd956c3b660d469b176e29d34958e39725f",
+  "empty_stage": {
+    "status": "PASS",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "isaaclab_module": "/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+    "torch": "2.7.0+cu128",
+    "kit_updates": 3,
+    "physics_steps": 0,
+    "robot_loaded": false,
+    "scope": "empty Kit stage and Lab simulation/converter API imports only"
+  },
+  "factory_selected_file_hash_check": {
+    "status": "PASS",
+    "checked_files": 110,
+    "changed_files": [],
+    "scope": "existing Factory package METADATA, pyvenv.cfg and launcher files only; not a full filesystem snapshot"
+  },
+  "selected_log_excerpts": {
+    "conda_isaaclab_clean_paths.log": [
+      "ModuleNotFoundError: No module named 'isaaclab'"
+    ],
+    "factory_bare_import.log": [
+      "  File \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab/isaaclab/app/__init__.py\", line 15, in <module>",
+      "    from .app_launcher import AppLauncher  # noqa: F401, F403",
+      "  File \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py\", line 30, in <module>",
+      "ModuleNotFoundError: No module named 'isaacsim'",
+      "DIST isaaclab 0.41.3 /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/isaaclab-0.41.3.dist-info",
+      "DIRECT_URL isaaclab {\"url\":\"file:///home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab\",\"dir_info\":{\"editable\":true}}",
+      "ISAACLAB_IMPORT_PASS /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab/isaaclab/__init__.py"
+    ],
+    "factory_launcher_import.log": [
+      "PINNED_PACKAGES={\"torch\": {\"version\": \"2.7.0+cu128\", \"path\": \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/torch/__init__.py\"}, \"torchvision\": {\"version\": \"0.22.0+cu128\", \"path\": \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/torchvision/__init__.py\"}, \"numpy\": {\"version\": \"1.26.4\", \"path\": \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/numpy/__init__.py\"}, \"gymnasium\": {\"version\": \"1.2.0\", \"path\": \"/home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/gymnasium/__init__.py\"}}",
+      "DIST isaaclab 0.41.3 /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/envs/factory-g01/lib/python3.10/site-packages/isaaclab-0.41.3.dist-info",
+      "DIRECT_URL isaaclab {\"url\":\"file:///home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab\",\"dir_info\":{\"editable\":true}}",
+      "ISAACLAB_IMPORT_PASS /home/ubuntu2004/Documents/Codex/2026-10-23/the-github-repository-has-now-been/work/upstream/IsaacLab/source/isaaclab/isaaclab/__init__.py",
+      "APP_LAUNCHER_IMPORT_PASS isaaclab.app.app_launcher"
+    ],
+    "factory_dependency_check.log": [
+      "The package `isaaclab` requires `pin-pink==3.1.0`, but it's not installed",
+      "The package `isaaclab` requires `dex-retargeting==0.4.6`, but it's not installed",
+      "The package `isaaclab-rl` requires `moviepy`, but it's not installed"
+    ]
+  },
+  "static_attempts": [
+    {
+      "log": "work/r1_smoke/static_import.log",
+      "exit_code": 0,
+      "accepted": false,
+      "reason": "Missing result marker; ordinary traversal missed instance proxies"
+    },
+    {
+      "log": "work/r1_smoke/static_import_recheck.log",
+      "exit_code": 0,
+      "accepted": false,
+      "reason": "Printed failed assertion No composed mesh geometry; Kit fast shutdown did not signal failure in shell"
+    },
+    {
+      "log": "work/r1_smoke/static_import_instance_proxy.log",
+      "exit_code": 139,
+      "accepted": false,
+      "reason": "Strict dependency check found OmniPBR.mdl; fast_shutdown=False attempt segfaulted during teardown"
+    },
+    {
+      "log": "work/r1_smoke/static_import_final.log",
+      "exit_code": 0,
+      "accepted": true,
+      "result": "PARTIAL",
+      "reason": "New summary and marker exist, all structural asserts PASS, 3 unresolved OmniPBR.mdl material references retained"
+    }
+  ],
+  "runtime_messages": [
+    "DriverShaderCacheManager::init() called without a shutdown()!",
+    "OmniHub is inaccessible",
+    "Failed to resolve reference @OmniPBR.mdl@"
+  ],
+  "no_robot_control": true,
+  "physics_steps": 0,
+  "training_started": false
+}

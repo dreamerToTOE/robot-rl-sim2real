@@ -75,7 +75,7 @@ Timestamped state feedback + independent FK reconstruction
 
 ## 5. 主要阻碍和风险
 
-1. **模型不一致：** URDF 的 joint2/3/4/6 轴与 SDF 不同，SDF 把多数关节放宽到 `[-3,3]`；直接导入会改变 FK 和碰撞结论。
+1. **模型定义差异：** URDF 的 joint2/3/4 轴与 SDF 文本不同（joint6 相同），SDF 把各轴界限改为 `[-3,3]`。B0-R1A 更正：不能仅凭轴符号判断 FK 不等价，统一角度定义后的结果见 [数值比较](B0_R1_URDF_SDF_FK_COMPARISON.md)；限位也不等于全部放宽。
 2. **动态限制缺失：** URDF/SDF 的 effort/velocity 全为 0，不能训练或下发时用作真实上限。
 3. **TCP/安装未知：** 无 `tool0`/TCP，也没有桌面、底座和自碰撞审批，圆心/半径/高度不能填写。
 4. **状态不足：** `JointState` 无 velocity/effort，服务返回缓存；只能在定义真实时间戳和估计窗口后使用 dq。
