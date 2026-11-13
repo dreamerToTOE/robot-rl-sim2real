@@ -1,0 +1,27 @@
+# Contract template; numeric values remain unknown until B0/B1.
+project: robot-rl-sim2real
+task: airborne_circle_tracking
+robot:
+  model: UNKNOWN
+  arm_dof: 6  # provisional, validate against real hardware
+  tcp_frame: UNKNOWN
+  base_frame: UNKNOWN
+reference:
+  type: circle_xy
+  center_m: null  # to be selected from verified safe workspace
+  radius_m: null
+  period_s: null
+  turns: 1
+policy:
+  algorithm: PPO
+  action_type: bounded_joint_position_target_increment
+  policy_rate_hz: null  # do not assume hardware streaming rate
+  observation_schema: null  # freeze only after B0/B1
+training:
+  simulator: Isaac Lab
+  simulator_version: null
+  seed: null
+real_robot:
+  enabled: false  # default is NO motion, not just a comment
+  endpoint: null
+  safety_approval_id: null

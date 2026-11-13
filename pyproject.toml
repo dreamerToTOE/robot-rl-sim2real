@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-rl-sim2real"
+version = "0.0.1"
+description = "Minimal scaffold for airborne robot arm trajectory tracking Sim2Real"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
