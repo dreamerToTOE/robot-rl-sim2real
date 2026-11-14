@@ -2,7 +2,7 @@
 
 **更新时间：2026-11-14（KST）**
 
-**总体状态：`SCAFFOLD_READY / B0_BLOCKED / B1_S1_PASS_SIM_ONLY / B2_S0_PASS_SIM_ONLY / B2_S1_PARTIAL_SIM_ONLY`**
+**总体状态：`SCAFFOLD_READY / B0_BLOCKED / B1_S1_PASS_SIM_ONLY / B2_S0_PASS_SIM_ONLY / B2_S1_PARTIAL_SIM_ONLY / B3_PARTIAL_SIM_ONLY`**
 
 主线仍是六自由度机械臂无接触空中圆形轨迹跟踪的 Isaac Lab → PPO → 实机 Sim2Real；无相机、夹爪、吸盘或接触任务。
 
@@ -10,13 +10,14 @@
 - 默认普通PD下，传统 IK 诊断驱动完成两个630步 episode，恒速圆 RMSE 约3.406 mm；零动作走满上限但全段RMSE约14.29/14.02 mm。随机动作两次首个 episode 分别在56/102步因姿态偏差终止；共630次批量控制步内14次姿态终止。碰撞、越限、非有限值故障注入和双环境隔离通过，同种子32步最大差0。详见 [测试汇总](reports/data/B2_S0_TEST_RESULTS.json)。
 - B2-S0 的旧 clipped quadratic 奖励和历史证据保留不变；位置误差以5 mm归一化后截断的问题由 B2-S1 单独审查。独立 `pd_gravity` 的 B2-S0 短测不覆盖本阶段结论。
 - **B2-S1：PARTIAL（SIM_ONLY，未训练）。** 零动作/随机/传统 IK 的 `e≤5 mm` 比例分别为16.90%/26.98%/100%；新增 `exp_linear` 候选 `r_pos=(0.03+exp(-e/0.005))/630`，在5 mm以上保持区分能力。候选配置下普通PD和 `pd_gravity` 均完成2环境、630步完整回归；传统IK恒速圆 RMSE/P95/最大误差分别为 `3.406/3.708/3.712 mm` 与 `0.076/0.077/0.077 mm`，均通过冻结成功判据。姿态终止门 `0.05 rad` 保持不变。1/2/4环境 CPU 吞吐量为 `38.45/37.87/42.89 env-step/s`；未测GPU、未启动PPO。
+- **B3：PARTIAL（SIM_ONLY）。** 使用 Factory 隔离环境完成单 seed 标准 PPO：780 updates、399,360 次环境交互、metrics 墙钟约 9,447.55 s（约157.5 min），未连接真实硬件。最终 validation 4/4 异常 terminated，成功率 `0/4`；相位覆盖约 `5.864–5.904 rad`，RMSE 均值 `3.536 mm`，P95 `5.876–5.888 mm`，未满足完整圆周、P95≤5 mm 和正常 truncated 的冻结判据。最终 Actor 的独立 PPO 测试已完成 100 回合：成功率 `0/100`，完整圆周率 `0/100`，异常终止 `100/100`，平均恒速圆段 RMSE `3.535 mm`、P95 `5.866 mm`，全部为姿态终止；同一初始状态集合下 zero、random、IK+PD 也各完成100回合，分别为 `0/100`、`0/100`、`100/100` 成功。IK+PD+gravity 的新环境初始化无输出超过15分钟后停止，未推断其结果；汇总见 [B3 独立评估](reports/B3_PPO_EVALUATION.md) 和 [脱敏数据](reports/data/B3_FINAL_EVAL_SUMMARY.json)。TorchScript Actor 独立加载通过，但这些证据只能说明仿真导出/评估链路正常，不代表策略成功或 Sim2Real 可行。训练和导出参数全部为 `SIM_ONLY`。
 - **B1-S1：PASS（所测 SIM_ONLY 传统基线）。** 复用同一环境和私有 USD，完成4,320步/18秒全序列，恒速圆5–13秒：圆心 `(0.3300382964,0.0070540661,0.4020848552) m`、半径10 mm、周期8 s、固定link6姿态目标。普通PD圆周RMSE/P95/最大误差为 `3.4073/3.7142/3.7182 mm`；单独保留的模型重力前馈对照为 `0.124385/0.124860/0.124904 mm`。两种控制均完成一圈，无碰撞/越限/NaN/饱和，逐步实际q、速度、加速度、力矩、真实仿真时钟及独立FK数据已保存。
 - **B1-S1 碰撞验证：PASS（所测场景）。** 修复Lab context构造时全局接触处理被关闭的问题；合成立方体正例有24条报告，机器人折叠正例第1步报告base_link/link6等非邻接碰撞，正常零位负例60步为0。7个runtime cooked hull已取出，证实其简化/外扩差异；采用CAD+cooked外包络与每体1 mm接触余量，在运动前及每个实际q上筛查。保留self-collision和标准直连关节对排除，无新增全局过滤。
 - **B1-S0 历史状态仍为PARTIAL。** 基础保持/六轴小步和动态FK数据保留；B1-S1复核发现S0的零回调不能作为有效碰撞负例证据，已补勘误。S1补齐了局部碰撞正例及cooked几何验证；不追溯改写旧运行结果。完整工作空间、连续扫掠体、真实桌面/安装、相邻CAD壳体接触仍未验证。
 - Kp、Kd、armature、摩擦、速度/力矩上限、仿真时间步和停止阈值均为 **SIM_ONLY**，不是厂商参数或真实部署安全值。`link6` 只是暂定模型参考点，真实法兰/TCP 未标定。
 - B0-R1A 环境及模型审查保持 **PARTIAL**：Lab commit `90b79bb2d44feb8d833f260f2bf37da3487180ba`；URDF/SDF `q_sdf=[q1,-q2,-q3,-q4,q5,q6]` 后 joint2 origin 仍存在约0.5 mm 基座系偏差，限位也不同。不能据此推断实机轴方向。原厂 URDF 仍为候选 canonical；原厂文件与本地派生 USD 不提交。
 - B0 实机门禁保持 **BLOCKED**：厂商 `dynamic_move_with_velocity` 的目标覆盖/排队、时序、停止、实时反馈和实际闭环能力未验证。真实型号、零位/编码器映射、软硬限位、速度/加速度/力矩、传动/摩擦、安装/负载与 TCP 等资料仍缺失。
-- 本次没有注册或启动 PPO 训练，也没有连接或驱动实机；没有改变 Factory 源码或选定环境文件（110个 hash 未变），没有上传厂商模型、mesh、SDK、派生 USD 或 cooked 顶点。成功及失败尝试的完整日志保留在本地忽略目录 `runs/b1_s0/`、`runs/b1_s1/`、`runs/b2_s0/`。
+- 本次 B3 已在 Factory 隔离环境运行单 seed PPO，但没有连接或驱动实机；没有改变 Factory 源码或选定环境文件（110个 hash 未变），没有上传厂商模型、mesh、SDK、派生 USD、cooked 顶点或训练权重。成功及失败尝试的完整日志保留在本地忽略目录 `runs/b1_s0/`、`runs/b1_s1/`、`runs/b2_s0/` 和 `runs/b3_seed20261201/`。
 
 | 门 | 状态 |
 |---|---|
@@ -26,8 +27,9 @@
 | B1-S1 无策略圆轨迹基线 | `PASS`（SIM_ONLY，限定模型/轨迹/数值诊断） |
 | B1 其余工作 | `NOT_STARTED` |
 | B2-S0 圆轨迹 RL 环境 | `PASS`（SIM_ONLY，两环境、无训练测试） |
-| B2-S1 可训练性与 PPO 前检查 | `PARTIAL`（SIM_ONLY，候选 reward 与完整回归通过；无PPO） |
-| B3–B7、PPO、实机部署 | `NOT_STARTED` |
+| B2-S1 可训练性与 PPO 前检查 | `PARTIAL`（SIM_ONLY，候选 reward 与完整回归通过） |
+| B3 PPO 训练与策略导出 | `PARTIAL`（SIM_ONLY，单 seed 与四组100回合独立评估完成；PPO冻结成功率0，gravity对照初始化阻塞） |
+| B4–B7、实机部署 | `NOT_STARTED` |
 | 用户学习验收 | `NOT_STARTED` |
 
 本次报告与脱敏证据：
@@ -42,5 +44,7 @@
 - 最小离线规划/执行/评估脚本与 SIM_ONLY 配置。
 - 既有 [S0物理记录及勘误](reports/B1_S0_PHYSICS_VALIDATION.md)、[控制](reports/B1_S0_JOINT_CONTROL.md)和[FK](reports/B1_S0_FK_VALIDATION.md)保留。
 - 既有 [B0-R1A 环境审查](reports/B0_R1_ENVIRONMENT_AUDIT.md)、[URDF/SDF 比较](reports/B0_R1_URDF_SDF_FK_COMPARISON.md) 和 [canonical 模型计划](reports/B0_R1_CANONICAL_MODEL_PLAN.md) 继续有效。
+- [B3 PPO 训练记录](reports/B3_PPO_TRAINING.md)、[独立评估合同](reports/B3_PPO_EVALUATION.md)、[训练性能](reports/B3_TRAINING_PERFORMANCE.md) 和 [策略导出](reports/B3_POLICY_EXPORT.md) 记录本次 SIM_ONLY 证据；最终 Actor 权重仅保留本地 `runs/`。
+- [B3 四组独立评估脱敏汇总](reports/data/B3_FINAL_EVAL_SUMMARY.json) 记录同一初始状态集合的 PPO、zero、random、IK+PD 结果；IK+PD+gravity 新批次初始化阻塞，不伪造指标。
 
-**下一决策门：** B2-S1 已完成 PPO 前环境审查，但当前仍只具备小规模 SIM_ONLY smoke 的条件；GPU 吞吐量、PPO runner 的有限时域 bootstrap、更多初态和真实接口仍待验证。PPO 训练需明确授权，不自动进入 B3。更广工作空间、实际硬件接口和安装场景仍需验证，实机前仍须按 `docs/SAFETY_GATE.md` 完成审批与只读/影子验证。理解问题见 B2-S0/B2-S1 报告，研究者尚未作答。
+**下一决策门：** B3 单 seed 和四组100回合独立评估已完成，但 PPO 冻结成功率为0，状态保持 `B3_PARTIAL`；需要单独解释或修复 gravity 环境初始化问题，并决定是否修正终止/奖励设计，不能据此进入实机部署。更广工作空间、实际硬件接口和安装场景仍需验证，实机前仍须按 `docs/SAFETY_GATE.md` 完成审批与只读/影子验证。理解问题见 B2-S0/B2-S1/B3 报告，研究者尚未作答。

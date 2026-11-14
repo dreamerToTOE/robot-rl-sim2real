@@ -1,0 +1,69 @@
+{
+  "parameter_class": "SIM_ONLY",
+  "split": "final_test",
+  "episodes_per_policy": 100,
+  "same_initial_states": true,
+  "success_criteria": {
+    "phase_span_rad": 6.283185307179586,
+    "rmse_threshold_m": 0.005,
+    "p95_threshold_m": 0.005,
+    "max_threshold_m": 0.008,
+    "normal_end_required": true
+  },
+  "policies": {
+    "ppo": {
+      "success_rate": 0.0,
+      "complete_circle_rate": 0.0,
+      "abnormal_termination_rate": 1.0,
+      "collision_rate": 0.0,
+      "mean_rmse_m": 0.0033457102468003107,
+      "mean_circle_rmse_m": 0.0035346650915739626,
+      "mean_circle_p95_m": 0.005865880260422849,
+      "mean_circle_max_m": 0.0058900223042659,
+      "termination_reason_counts": {"orientation": 100}
+    },
+    "zero": {
+      "success_rate": 0.0,
+      "complete_circle_rate": 1.0,
+      "abnormal_termination_rate": 0.0,
+      "collision_rate": 0.0,
+      "mean_rmse_m": 0.01409833474049112,
+      "mean_circle_rmse_m": 0.015714794138602627,
+      "mean_circle_p95_m": 0.021885455826184067,
+      "mean_circle_max_m": 0.02195401029043918,
+      "termination_reason_counts": {}
+    },
+    "random": {
+      "success_rate": 0.0,
+      "complete_circle_rate": 0.0,
+      "abnormal_termination_rate": 1.0,
+      "collision_rate": 0.0,
+      "mean_rmse_m": 0.008491951403933584,
+      "mean_circle_rmse_m": 0.01207570537484988,
+      "mean_circle_p95_m": 0.015618331876564692,
+      "mean_circle_max_m": 0.01629608627865059,
+      "termination_reason_counts": {"orientation": 99, "tracking_workspace": 1}
+    },
+    "ik_pd": {
+      "success_rate": 1.0,
+      "complete_circle_rate": 1.0,
+      "abnormal_termination_rate": 0.0,
+      "collision_rate": 0.0,
+      "mean_rmse_m": 0.0034743547085894573,
+      "mean_circle_rmse_m": 0.0034063589120075437,
+      "mean_circle_p95_m": 0.003708357447442128,
+      "mean_circle_max_m": 0.0037121093938873332,
+      "termination_reason_counts": {}
+    }
+  },
+  "gravity_policy": {
+    "name": "ik_pd_gravity",
+    "status": "BLOCKED_INITIALIZATION",
+    "reason": "The reused Isaac process spent over 15 minutes in pd_gravity environment initialization without producing output; it was terminated. No gravity result is inferred from this run."
+  },
+  "notes": [
+    "All completed policies used the same 100 reserved seeds and the same initial-state set.",
+    "Full step traces and private model-derived geometry remain in ignored local runs/.",
+    "This file is an aggregate audit record; it contains no vendor model, mesh, cooked vertices or weights."
+  ]
+}
